@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>顾问营销六部经营看板</title>
+  <style>
+    :root {
+      --bg: #f6efdf;
+      --paper: rgba(255, 252, 246, 0.92);
+      --ink: #1f2a26;
+      --muted: #6d756c;
+      --line: rgba(31, 42, 38, 0.1);
+      --green: #0e6a4d;
+      --green-soft: #d9efe6;
+      --amber: #cb7a26;
+      --amber-soft: #f5e2c1;
+      --gold: #e3bb59;
+      --navy: #20384d;
+      --red: #b54b4b;
+      --shadow: 0 24px 48px rgba(58, 45, 24, 0.12);
+      --radius: 26px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Aptos", "Microsoft YaHei UI", "PingFang SC", sans-serif;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(203, 122, 38, 0.14), transparent 24%),
+        radial-gradient(circle at 100% 10%, rgba(14, 106, 77, 0.16), transparent 24%),
+        linear-gradient(180deg, #fbf6eb 0%, #f1e7d4 100%);
+    }
+
+    .shell {
+      width: min(1480px, calc(100% - 28px));
+      margin: 18px auto 36px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 34px 34px 30px;
+      border-radius: 34px;
+      color: #f9f7f1;
+      background: linear-gradient(135deg, rgba(10, 83, 60, 0.96), rgba(23, 53, 75, 0.94));
+      box-shadow: var(--shadow);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -80px;
+      top: -70px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(247, 205, 130, 0.42), transparent 70%);
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.72;
+    }
+
+    h1 {
+      margin: 10px 0 8px;
+      font-size: clamp(34px, 4vw, 58px);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 900px;
+      font-size: 15px;
+      color: rgba(249, 247, 241, 0.82);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .span-12 { grid-column: span 12; }
+    .span-6 { grid-column: span 6; }
+    .span-4 { grid-column: span 4; }
+
+    .title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -0.02em;
+    }
+
+    .row-heading {
+      grid-column: span 12;
+      margin: 2px 0 -6px;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+
+    .section-note {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .department-top {
+      display: grid;
+      grid-template-columns: 1.45fr 1fr;
+      gap: 16px;
+    }
+
+    .hero-metric {
+      padding: 24px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(10, 83, 60, 0.96), rgba(14, 106, 77, 0.92));
+      color: #f9f7f1;
+    }
+
+    .hero-metric .mini {
+      font-size: 13px;
+      opacity: 0.74;
+    }
+
+    .hero-metric .big {
+      margin-top: 10px;
+      font-size: clamp(42px, 5vw, 64px);
+      font-weight: 800;
+      letter-spacing: -0.05em;
+    }
+
+    .progress-wrap {
+      margin-top: 16px;
+    }
+
+    .progress-track {
+      height: 14px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .progress-bar {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #f2d390, #fff3cb);
+    }
+
+    .hero-metric .subgrid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .hero-metric .subitem {
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .hero-metric .subitem strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 18px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .kpi-card {
+      padding: 18px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.84), rgba(243, 237, 227, 0.94));
+      border: 1px solid var(--line);
+      min-height: 178px;
+    }
+
+    .kpi-card .label {
+      color: var(--muted);
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .kpi-card .value {
+      margin-top: 8px;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    .kpi-card .micro-note {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.3;
+    }
+
+    .podium {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      align-items: end;
+      height: 116px;
+      margin-top: 12px;
+    }
+
+    .podium-step {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .podium-person {
+      text-align: center;
+      line-height: 1.15;
+    }
+
+    .podium-name {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .podium-amount {
+      margin-top: 3px;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .podium-block {
+      width: 100%;
+      border-radius: 18px 18px 8px 8px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 10px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
+    }
+
+    .podium-rank {
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .podium-first .podium-block {
+      height: 74px;
+      background: linear-gradient(180deg, #f4d36c, #d5a33c);
+      color: #5d4012;
+    }
+
+    .podium-second .podium-block {
+      height: 58px;
+      background: linear-gradient(180deg, #d8dfdf, #aeb6ba);
+      color: #415057;
+    }
+
+    .podium-third .podium-block {
+      height: 48px;
+      background: linear-gradient(180deg, #d99e6d, #b87641);
+      color: #5b3419;
+    }
+
+    .allocation {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .alloc-cell {
+      padding: 10px 8px;
+      border-radius: 14px;
+      text-align: center;
+      background: #f4ecdc;
+      border: 1px solid var(--line);
+      font-size: 12px;
+    }
+
+    .alloc-cell strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 16px;
+      color: var(--green);
+    }
+
+    .legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .rank-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .rank-row,
+    .month-row {
+      display: grid;
+      grid-template-columns: 100px 88px minmax(120px, 1fr) 92px;
+      gap: 12px;
+      align-items: center;
+      padding: 8px 10px;
+      border-radius: 16px;
+      border: 1px solid transparent;
+    }
+
+    .month-row {
+      grid-template-columns: 100px minmax(120px, 1fr) 92px;
+    }
+
+    .rank-row.over,
+    .month-row.over {
+      background: linear-gradient(135deg, rgba(14, 106, 77, 0.1), rgba(247, 205, 130, 0.16));
+      border-color: rgba(14, 106, 77, 0.18);
+    }
+
+    .name {
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .name.over::after {
+      content: "超额";
+      margin-left: 6px;
+      padding: 1px 6px;
+      border-radius: 999px;
+      font-size: 9px;
+      line-height: 1.2;
+      color: #0c5e44;
+      background: #d7efe5;
+      vertical-align: 2px;
+    }
+
+    .target,
+    .rate {
+      text-align: right;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .track {
+      position: relative;
+      height: 20px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: #efe6d5;
+      box-shadow: inset 0 0 0 1px rgba(30, 42, 38, 0.08);
+    }
+
+    .target-fill,
+    .actual-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    .annual-target-fill {
+      background: rgba(23, 53, 75, 0.2);
+    }
+
+    .annual-actual-fill {
+      background: linear-gradient(90deg, var(--green), #1f8b65);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
+    }
+
+    .month-target-fill {
+      background: rgba(23, 53, 75, 0.32);
+    }
+
+    .month-actual-fill {
+      background: linear-gradient(90deg, var(--amber), #e5b54f);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
+    }
+
+    .track-number {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 11px;
+      font-weight: 700;
+      color: #1e2a26;
+      line-height: 1;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.28);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .track-number.right {
+      right: 8px;
+    }
+
+    .track-number.left {
+      left: 8px;
+      color: #694114;
+    }
+
+    .rate-high { color: var(--green); font-weight: 700; }
+    .rate-mid { color: #8b5c1b; font-weight: 700; }
+    .rate-low { color: var(--red); font-weight: 700; }
+
+    .old-customer-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .old-customer-row {
+      display: grid;
+      grid-template-columns: 92px minmax(140px, 1fr) 96px;
+      gap: 12px;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 18px;
+      border: 1px solid transparent;
+    }
+
+    .old-customer-row.over {
+      background: linear-gradient(135deg, rgba(14, 106, 77, 0.1), rgba(247, 205, 130, 0.16));
+      border-color: rgba(14, 106, 77, 0.18);
+    }
+
+    .old-customer-track .track-number.left {
+      color: #f6f3ea;
+      text-shadow: none;
+    }
+
+    .old-annual-fill {
+      background: linear-gradient(90deg, var(--green), #31a173);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
+    }
+
+    .old-quarter-fill {
+      background: linear-gradient(90deg, var(--amber), #e5b54f);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
+    }
+
+    .old-month-fill {
+      background: linear-gradient(90deg, var(--navy), #3b6485);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
+    }
+
+    .footnote {
+      margin-top: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .ambassador-table-wrap {
+      overflow-x: auto;
+      border: 1px solid rgba(31, 42, 38, 0.3);
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.74), rgba(244, 236, 220, 0.7));
+    }
+
+    .ambassador-table {
+        width: 100%;
+        min-width: 980px;
+        table-layout: fixed;
+        border-collapse: collapse;
+      }
+
+    .ambassador-table th,
+    .ambassador-table td {
+        padding: 8px 12px;
+        border: 1px solid rgba(31, 42, 38, 0.24);
+        vertical-align: middle;
+      }
+
+    .ambassador-table th {
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      background: rgba(255, 252, 246, 0.92);
+      white-space: nowrap;
+    }
+
+    .ambassador-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .ambassador-table .name-col {
+      width: 120px;
+    }
+
+    .ambassador-table .count-col {
+      width: 140px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .ambassador-table .num-col {
+        width: 110px;
+        text-align: center;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+
+    .ambassador-table .rate-col {
+        width: 110px;
+      }
+
+    .ambassador-table th:nth-child(5),
+    .ambassador-table th:nth-child(8),
+    .ambassador-table td:nth-child(5),
+    .ambassador-table td:nth-child(8) {
+        width: 110px;
+      }
+
+    .ambassador-rate-cell {
+        width: 100%;
+        display: grid;
+        gap: 4px;
+      }
+
+    .ambassador-track {
+      position: relative;
+      height: 10px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: #efe6d5;
+      box-shadow: inset 0 0 0 1px rgba(30, 42, 38, 0.16);
+    }
+
+    .ambassador-target-fill,
+    .ambassador-actual-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    .ambassador-target-fill {
+      background: rgba(23, 53, 75, 0.24);
+    }
+
+    .ambassador-month-fill {
+      background: linear-gradient(90deg, var(--amber), #e5b54f);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
+    }
+
+    .ambassador-week-fill {
+      background: linear-gradient(90deg, var(--navy), #3b6485);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
+    }
+
+    .ambassador-rate-top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .ambassador-rate-value {
+      font-weight: 700;
+    }
+
+    .ambassador-table td.name {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 1220px) {
+      .department-top {
+        grid-template-columns: 1fr;
+      }
+      .span-6 {
+        grid-column: span 12;
+      }
+      .span-4 {
+        grid-column: span 12;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .shell {
+        width: min(100% - 16px, 100%);
+      }
+      .hero,
+      .card {
+        padding: 18px;
+      }
+      .hero-metric .subgrid,
+      .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+      .allocation {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .rank-row,
+      .month-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <section class="hero">
+      <div class="eyebrow">Consulting Marketing 6</div>
+      <h1>顾问营销六部经营看板</h1>
+      <p id="hero-note">统计日期 2026-04-28。当前页面按“当前月份”驱动展示：部门完成情况、销售全年目标完成情况、销售当月完成情况，以及截至当月的累计超额判断。</p>
+    </section>
+
+    <section class="grid">
+      <article class="card span-12">
+        <div class="title-row">
+          <div>
+            <h2 class="section-title">第一行：部门完成情况</h2>
+            <div class="section-note">这一行只放年、季、月、周的核心结果。季/月完成率按目标算法计算，不直接取页面原值。</div>
+          </div>
+          <div class="section-note">负责人：叶桢</div>
+        </div>
+        <div class="department-top">
+          <div class="hero-metric">
+            <div class="mini">年度核心视图</div>
+            <div class="big" id="dept-annual-rate">27.69%</div>
+            <div>累计绩效完成率</div>
+            <div class="progress-wrap">
+              <div class="progress-track"><div class="progress-bar" id="dept-annual-rate-bar" style="width:27.69%"></div></div>
+            </div>
+            <div class="subgrid">
+              <div class="subitem">
+                全年目标
+                <strong id="dept-annual-target">1350.00万</strong>
+              </div>
+              <div class="subitem">
+                部门累计金额
+                <strong id="dept-cumulative-actual">373.84万</strong>
+              </div>
+              <div class="subitem">
+                季完成率
+                <strong id="dept-quarter-rate">6.27%</strong>
+              </div>
+              <div class="subitem">
+                月完成率
+                <strong id="dept-month-rate">6.27%</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="label" id="dept-quarter-target-label">季目标</div>
+              <div class="value" id="dept-quarter-target-value">0万</div>
+              <div class="section-note" id="dept-quarter-target-note">季金额 0万 / 季完成率 0%</div>
+            </div>
+            <div class="kpi-card">
+              <div class="label" id="dept-month-target-label">月目标</div>
+              <div class="value" id="dept-month-target-value">0万</div>
+              <div class="section-note" id="dept-month-target-note">月金额 0万 / 月完成率 0%</div>
+            </div>
+            <div class="kpi-card">
+              <div class="label">周金额</div>
+              <div class="value" id="dept-week-actual">14.89万</div>
+              <div class="section-note">仅展示金额</div>
+            </div>
+            <div class="kpi-card">
+              <div class="label">说明</div>
+              <div class="value">口径</div>
+              <div class="section-note">左侧绿色为页面口径；右侧季/月为目标算法口径</div>
+            </div>
+          </div>
+        </div>
+        <div class="allocation" id="allocation-strip"></div>
+      </article>
+
+      <div class="row-heading">第二行：销售业绩达成情况</div>
+
+      <article class="card span-6">
+        <div class="title-row">
+          <div>
+            <h2 class="section-title">销售全年目标完成情况</h2>
+            <div class="section-note" id="annual-note">按年完成率倒序。超额口径：截至当前月份的累计完成业绩大于累计目标。</div>
+          </div>
+          <div class="legend">
+            <span><i class="swatch" style="background:rgba(23,53,75,0.2)"></i>全年目标刻度</span>
+            <span><i class="swatch" style="background:linear-gradient(90deg,#0e6a4d,#1f8b65)"></i>累计完成业绩</span>
+          </div>
+        </div>
+        <div class="rank-grid" id="annual-bars"></div>
+      </article>
+
+      <article class="card span-6">
+        <div class="title-row">
+          <div>
+            <h2 class="section-title">销售每月完成情况</h2>
+            <div class="section-note" id="monthly-note">按当月完成率倒序。月度图与年度同规格：目标底条，完成覆盖条，数字都压在同一条上。</div>
+          </div>
+          <div class="legend">
+            <span><i class="swatch" style="background:rgba(23,53,75,0.32)"></i>当月目标</span>
+            <span><i class="swatch" style="background:linear-gradient(90deg,#cb7a26,#e5b54f)"></i>当月完成</span>
+          </div>
+        </div>
+        <div class="rank-grid" id="monthly-bars"></div>
+      </article>
+
+      <div class="row-heading">第三行：老客户业绩达成情况</div>
+
+      <article class="card span-4">
+        <div class="title-row">
+          <div>
+            <h2 class="section-title">老客户年度</h2>
+            <div class="section-note">按全年老客户完成率倒序，目标来自 `Sheet2` 右侧绿色目标区。</div>
+          </div>
+          <div class="legend">
+            <span><i class="swatch" style="background:rgba(23,53,75,0.22)"></i>全年目标</span>
+            <span><i class="swatch" style="background:linear-gradient(90deg,#0e6a4d,#31a173)"></i>全年完成</span>
+          </div>
+        </div>
+        <div class="old-customer-grid" id="old-customer-annual-bars"></div>
+      </article>
+
+      <article class="card span-4">
+        <div class="title-row">
+          <div>
+            <h2 class="section-title">老客户季度</h2>
+            <div class="section-note">按季度老客户完成率倒序，季度目标 = 全年目标 × 28%。</div>
+          </div>
+          <div class="legend">
+            <span><i class="swatch" style="background:rgba(23,53,75,0.22)"></i>季度目标</span>
+            <span><i class="swatch" style="background:linear-gradient(90deg,#cb7a26,#e5b54f)"></i>季度完成</span>
+          </div>
+        </div>
+        <div class="old-customer-grid" id="old-customer-quarter-bars"></div>
+      </article>
+
+      <article class="card span-4">
+        <div class="title-row">
+          <div>
+            <h2 class="section-title">老客户月度</h2>
+            <div class="section-note">按当月老客户完成率倒序，当月目标 = 全年目标 × 9%。</div>
+          </div>
+          <div class="legend">
+            <span><i class="swatch" style="background:rgba(23,53,75,0.22)"></i>当月目标</span>
+            <span><i class="swatch" style="background:linear-gradient(90deg,#20384d,#3b6485)"></i>当月完成</span>
+          </div>
+        </div>
+        <div class="old-customer-grid" id="old-customer-month-bars"></div>
+      </article>
+
+      <div class="row-heading">第四行：推广大使达成情况</div>
+
+      <article class="card span-12">
+        <div class="title-row">
+          <div>
+            <h2 class="section-title">推广大使</h2>
+            <div class="section-note" id="ambassador-note">按顾问营销六部员工列示。累计推广大使数统计区间为 2026-01-01 至 2026-04-28；4 月目标按你提供的目标值；周目标 = 月目标 / 5，当前按 2026-04-27 至 2026-04-30 统计。</div>
+          </div>
+          <div class="legend">
+            <span><i class="swatch" style="background:linear-gradient(90deg,#cb7a26,#e5b54f)"></i>月完成</span>
+            <span><i class="swatch" style="background:linear-gradient(90deg,#20384d,#3b6485)"></i>周完成</span>
+          </div>
+        </div>
+        <div class="ambassador-table-wrap" id="ambassador-rows"></div>
+      </article>
+
+      <article class="card span-12">
+        <div class="footnote">数据说明：部门业绩完成情况来自北极星数智系统；个人全年/当月业绩来自阿里云 BI“明细表-电销录单”，组长姓名筛选为“叶桢”。页面按当前月份展示当月目标、当月业绩，并按“截至当前月份的累计完成业绩是否大于累计目标”判断是否超额。</div>
+      </article>
+    </section>
+  </div>
+
+  <script>
+    const allocation = [
+      { monthIndex: 1, month: "1月", ratio: 6 },
+      { monthIndex: 2, month: "2月", ratio: 6 },
+      { monthIndex: 3, month: "3月", ratio: 10 },
+      { monthIndex: 4, month: "4月", ratio: 9 },
+      { monthIndex: 5, month: "5月", ratio: 9 },
+      { monthIndex: 6, month: "6月", ratio: 10 },
+      { monthIndex: 7, month: "7月", ratio: 7 },
+      { monthIndex: 8, month: "8月", ratio: 7 },
+      { monthIndex: 9, month: "9月", ratio: 8 },
+      { monthIndex: 10, month: "10月", ratio: 7 },
+      { monthIndex: 11, month: "11月", ratio: 11 },
+      { monthIndex: 12, month: "12月", ratio: 10 }
+    ];
+
+    const currentMonthIndex = 4;
+    const currentMonth = allocation.find((item) => item.monthIndex === currentMonthIndex);
+    const currentQuarter = Math.ceil(currentMonthIndex / 3);
+    const currentQuarterRatio = allocation
+      .filter((item) => Math.ceil(item.monthIndex / 3) === currentQuarter)
+      .reduce((sum, item) => sum + item.ratio, 0) / 100;
+    const cumulativeTargetRatio = allocation
+      .filter((item) => item.monthIndex <= currentMonthIndex)
+      .reduce((sum, item) => sum + item.ratio, 0) / 100;
+
+    const department = {
+      annualTarget: 1350.00,
+      cumulativeActual: 376.86,
+      annualRate: 27.72,
+      sourceQuarterRate: 6.30,
+      sourceMonthRate: 6.30,
+      quarterActual: 86.90,
+      monthActual: 86.90,
+      weekActual: 16.79
+    };
+
+    const oldCustomerPeople = [
+      { name: "黄友桂", target: 30.00, annualActual: 9.647284, quarterActual: 2.883356, monthActual: 2.883356 },
+      { name: "金艳", target: 100.00, annualActual: 37.626903, quarterActual: 7.967175, monthActual: 7.967175 },
+      { name: "李一飞", target: 35.00, annualActual: 14.49858, quarterActual: 4.298115, monthActual: 4.298115 },
+      { name: "鲁金宸", target: 8.00, annualActual: 3.916718, quarterActual: 0.104737, monthActual: 0.104737 },
+      { name: "吕利", target: 80.00, annualActual: 23.092996, quarterActual: 2.765673, monthActual: 2.765673 },
+      { name: "阙剑红", target: 15.00, annualActual: 18.035883, quarterActual: 4.982487, monthActual: 4.982487 },
+      { name: "王伟鹏", target: 8.00, annualActual: 0.89126, quarterActual: 0.161275, monthActual: 0.161275 },
+      { name: "全志斌", target: 50.00, annualActual: 13.323409, quarterActual: 2.060756, monthActual: 2.060756 },
+      { name: "徐量", target: 35.00, annualActual: 13.6021, quarterActual: 5.555164, monthActual: 5.555164 },
+      { name: "应鹏翔", target: 35.00, annualActual: 13.35402, quarterActual: 0.882707, monthActual: 0.882707 },
+      { name: "于艳慧", target: 60.00, annualActual: 23.928399, quarterActual: 7.571135, monthActual: 7.571135 }
+    ].map((item) => {
+      const quarterTarget = item.target * currentQuarterRatio;
+      const monthTarget = item.target * currentMonth.ratio / 100;
+      return {
+        ...item,
+        quarterTarget,
+        monthTarget,
+        annualRate: item.annualActual / item.target * 100,
+        quarterRate: item.quarterActual / quarterTarget * 100,
+        monthRate: item.monthActual / monthTarget * 100,
+        annualOver: item.annualActual > item.target * cumulativeTargetRatio,
+        quarterOver: item.quarterActual > quarterTarget,
+        monthOver: item.monthActual > monthTarget
+      };
+    });
+
+    const ambassadorPeople = [
+      { name: "黄友桂", annualTotal: 31, monthTarget: 20, monthDone: 16, weekTarget: 4, weekDone: 0 },
+      { name: "金艳", annualTotal: 41, monthTarget: 16, monthDone: 20, weekTarget: 3.2, weekDone: 0 },
+      { name: "李一飞", annualTotal: 30, monthTarget: 16, monthDone: 13, weekTarget: 3.2, weekDone: 0 },
+      { name: "鲁金宸", annualTotal: 56, monthTarget: 16, monthDone: 13, weekTarget: 3.2, weekDone: 1 },
+      { name: "吕利", annualTotal: 41, monthTarget: 20, monthDone: 16, weekTarget: 4, weekDone: 0 },
+      { name: "全志斌", annualTotal: 40, monthTarget: 20, monthDone: 20, weekTarget: 4, weekDone: 3 },
+      { name: "阙剑红", annualTotal: 3, monthTarget: 0, monthDone: 0, weekTarget: 0, weekDone: 0 },
+      { name: "王伟鹏", annualTotal: 47, monthTarget: 20, monthDone: 23, weekTarget: 4, weekDone: 0 },
+      { name: "徐量", annualTotal: 82, monthTarget: 20, monthDone: 26, weekTarget: 4, weekDone: 0 },
+      { name: "叶桢", annualTotal: 0, monthTarget: 0, monthDone: 0, weekTarget: 0, weekDone: 0 },
+      { name: "应鹏翔", annualTotal: 19, monthTarget: 16, monthDone: 8, weekTarget: 3.2, weekDone: 1 },
+      { name: "于艳慧", annualTotal: 47, monthTarget: 20, monthDone: 16, weekTarget: 4, weekDone: 3 }
+    ].map((item) => ({
+      ...item,
+      weekTarget: Math.ceil(item.monthTarget / 5),
+      monthRate: item.monthTarget ? item.monthDone / item.monthTarget * 100 : 0,
+      weekRate: Math.ceil(item.monthTarget / 5) ? item.weekDone / Math.ceil(item.monthTarget / 5) * 100 : 0
+    }));
+
+    [
+      { annualTotal: 31, monthDone: 16, weekDone: 0 },
+      { annualTotal: 41, monthDone: 20, weekDone: 0 },
+      { annualTotal: 31, monthDone: 14, weekDone: 1 },
+      { annualTotal: 56, monthDone: 13, weekDone: 1 },
+      { annualTotal: 43, monthDone: 18, weekDone: 2 },
+      { annualTotal: 41, monthDone: 21, weekDone: 4 },
+      { annualTotal: 3, monthDone: 0, weekDone: 0 },
+      { annualTotal: 47, monthDone: 23, weekDone: 0 },
+      { annualTotal: 83, monthDone: 27, weekDone: 1 },
+      { annualTotal: 0, monthDone: 0, weekDone: 0 },
+      { annualTotal: 19, monthDone: 8, weekDone: 1 },
+      { annualTotal: 47, monthDone: 16, weekDone: 3 }
+    ].forEach((latest, index) => {
+      ambassadorPeople[index].annualTotal = latest.annualTotal;
+      ambassadorPeople[index].monthDone = latest.monthDone;
+      ambassadorPeople[index].weekDone = latest.weekDone;
+      ambassadorPeople[index].weekTarget = Math.ceil(ambassadorPeople[index].monthTarget / 5);
+      ambassadorPeople[index].monthRate = ambassadorPeople[index].monthTarget ? ambassadorPeople[index].monthDone / ambassadorPeople[index].monthTarget * 100 : 0;
+      ambassadorPeople[index].weekRate = ambassadorPeople[index].weekTarget ? ambassadorPeople[index].weekDone / ambassadorPeople[index].weekTarget * 100 : 0;
+    });
+
+    const people = [
+      { name: "金艳", target: 240.00, actual: 74.32, monthlyActuals: { 4: 12.34 } },
+      { name: "吕利", target: 170.00, actual: 46.22, monthlyActuals: { 4: 8.617 } },
+      { name: "于艳慧", target: 170.00, actual: 57.67, monthlyActuals: { 4: 14.00 } },
+      { name: "徐量", target: 160.00, actual: 44.29, monthlyActuals: { 4: 15.62 } },
+      { name: "李一飞", target: 150.00, actual: 36.62, monthlyActuals: { 4: 5.099 } },
+      { name: "黄友桂", target: 100.00, actual: 19.75, monthlyActuals: { 4: 4.844 } },
+      { name: "鲁金宸", target: 100.00, actual: 24.76, monthlyActuals: { 4: 5.119 } },
+      { name: "全志斌", target: 100.00, actual: 28.11, monthlyActuals: { 4: 5.313 } },
+      { name: "应鹏翔", target: 100.00, actual: 25.55, monthlyActuals: { 4: 3.658 } },
+      { name: "王伟鹏", target: 50.00, actual: 16.64, monthlyActuals: { 4: 11.67 } },
+      { name: "阙剑红", target: 50.00, actual: 26.81, monthlyActuals: { 4: 5.981 } }
+    ].map((item) => {
+      const monthTarget = item.target * currentMonth.ratio / 100;
+      const monthActual = item.monthlyActuals[currentMonthIndex] ?? 0;
+      const cumulativeTarget = item.target * cumulativeTargetRatio;
+      return {
+        ...item,
+        monthTarget,
+        monthActual,
+        annualRate: item.actual / item.target * 100,
+        monthlyRate: monthActual / monthTarget * 100,
+        cumulativeTarget,
+        cumulativeOver: item.actual > cumulativeTarget,
+        monthlyOver: monthActual > monthTarget
+      };
+    });
+
+    [
+      { actual: 74.45, monthActual: 12.47 },
+      { actual: 46.22, monthActual: 8.617 },
+      { actual: 57.67, monthActual: 14.00 },
+      { actual: 44.51, monthActual: 15.83 },
+      { actual: 36.62, monthActual: 5.099 },
+      { actual: 19.75, monthActual: 4.844 },
+      { actual: 24.76, monthActual: 5.119 },
+      { actual: 28.11, monthActual: 5.313 },
+      { actual: 25.55, monthActual: 3.658 },
+      { actual: 16.64, monthActual: 11.67 },
+      { actual: 26.85, monthActual: 6.018 }
+    ].forEach((latest, index) => {
+      people[index].actual = latest.actual;
+      people[index].monthActual = latest.monthActual;
+      people[index].monthlyActuals[currentMonthIndex] = latest.monthActual;
+      people[index].annualRate = people[index].actual / people[index].target * 100;
+      people[index].monthlyRate = people[index].monthActual / people[index].monthTarget * 100;
+      people[index].cumulativeOver = people[index].actual > people[index].cumulativeTarget;
+      people[index].monthlyOver = people[index].monthActual > people[index].monthTarget;
+    });
+
+    const annualSorted = [...people].sort((a, b) => b.annualRate - a.annualRate);
+    const monthlySorted = [...people].sort((a, b) => b.monthlyRate - a.monthlyRate);
+    const monthlyChampions = [...people].sort((a, b) => b.monthActual - a.monthActual).slice(0, 3);
+
+    const maxAnnualTarget = Math.max(...annualSorted.map((d) => d.target));
+    const maxMonthScale = Math.max(...monthlySorted.map((d) => Math.max(d.monthTarget, d.monthActual)));
+
+    const fmt = (value) => {
+      const fixed = Number(value).toFixed(3);
+      return fixed.endsWith("000")
+        ? Number(value).toFixed(0)
+        : fixed.endsWith("00")
+        ? Number(value).toFixed(1)
+        : fixed.endsWith("0")
+        ? Number(value).toFixed(2)
+        : fixed;
+    };
+
+    const wan = (value) => `${fmt(value)}万`;
+    const pct = (value) => `${value.toFixed(2)}%`;
+    const rateClass = (value) => value >= 100 ? "rate-high" : value >= 50 ? "rate-mid" : "rate-low";
+
+    const deptQuarterTarget = department.annualTarget * currentQuarterRatio;
+    const deptMonthTarget = department.annualTarget * currentMonth.ratio / 100;
+    const deptQuarterRate = department.quarterActual / deptQuarterTarget * 100;
+    const deptMonthRate = department.monthActual / deptMonthTarget * 100;
+    const oldAnnualSorted = [...oldCustomerPeople].sort((a, b) => b.annualRate - a.annualRate);
+    const oldQuarterSorted = [...oldCustomerPeople].sort((a, b) => b.quarterRate - a.quarterRate);
+    const oldMonthSorted = [...oldCustomerPeople].sort((a, b) => b.monthRate - a.monthRate);
+    const ambassadorSorted = [...ambassadorPeople].sort((a, b) => b.monthDone - a.monthDone);
+    const oldMaxAnnualTarget = Math.max(...oldAnnualSorted.map((d) => d.target));
+    const oldMaxQuarterScale = Math.max(...oldQuarterSorted.map((d) => Math.max(d.quarterTarget, d.quarterActual)));
+    const oldMaxMonthScale = Math.max(...oldMonthSorted.map((d) => Math.max(d.monthTarget, d.monthActual)));
+    const ambassadorMaxMonthScale = Math.max(...ambassadorSorted.map((d) => Math.max(d.monthTarget, d.monthDone, 1)));
+    const ambassadorMaxWeekScale = Math.max(...ambassadorSorted.map((d) => Math.max(d.weekTarget, d.weekDone, 1)));
+
+    document.getElementById("hero-note").textContent =
+      `统计日期 2026-04-28。当前展示月份：${currentMonth.month}。页面中的“超额”统一指截至${currentMonth.month}的累计完成业绩大于累计目标。`;
+    document.getElementById("annual-note").textContent =
+      `按年完成率倒序。当前超额口径：1-${currentMonthIndex}月累计完成业绩 > 1-${currentMonthIndex}月累计目标（累计目标比例 ${Math.round(cumulativeTargetRatio * 100)}%）。`;
+    document.getElementById("monthly-note").textContent =
+      `按${currentMonth.month}完成率倒序。目标底条、完成覆盖条，数字都压在同一条上。`;
+
+    document.getElementById("hero-note").textContent = "";
+    const firstSectionNotes = document.querySelectorAll(".card.span-12 .title-row .section-note");
+    if (firstSectionNotes[0]) firstSectionNotes[0].textContent = "";
+
+    const deptKpiCards = document.querySelectorAll(".department-top .kpi-card");
+    if (deptKpiCards[2]) {
+      const weekNote = deptKpiCards[2].querySelector(".section-note, .micro-note");
+      if (weekNote) weekNote.textContent = "";
+    }
+    if (deptKpiCards[3]) {
+      deptKpiCards[3].innerHTML = `
+        <div class="label">本月销冠</div>
+        <div id="monthly-podium" class="podium">
+          ${[
+            { item: monthlyChampions[1], cls: "podium-second", rank: "2" },
+            { item: monthlyChampions[0], cls: "podium-first", rank: "1" },
+            { item: monthlyChampions[2], cls: "podium-third", rank: "3" }
+          ].map(({ item, cls, rank }) => `
+            <div class="podium-step ${cls}">
+              <div class="podium-person">
+                <div class="podium-name">${item.name}</div>
+                <div class="podium-amount">${wan(item.monthActual)}</div>
+              </div>
+              <div class="podium-block"><span class="podium-rank">${rank}</span></div>
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    const ambassadorNote = document.getElementById("ambassador-note");
+    if (ambassadorNote) {
+      ambassadorNote.textContent = "按顾问营销六部员工列示。累计推广大使数统计区间为 2026-01-01 至 2026-04-29；4 月目标按你提供的目标值；周目标 = 月目标 / 5 后向上取整，当前按 2026-04-27 至 2026-04-30 统计。";
+    }
+
+    document.getElementById("dept-annual-target").textContent = wan(department.annualTarget);
+    document.getElementById("dept-cumulative-actual").textContent = wan(department.cumulativeActual);
+    document.getElementById("dept-annual-rate").textContent = pct(department.annualRate);
+    document.getElementById("dept-annual-rate-bar").style.width = `${department.annualRate}%`;
+    document.getElementById("dept-quarter-rate").textContent = pct(department.sourceQuarterRate);
+    document.getElementById("dept-month-rate").textContent = pct(department.sourceMonthRate);
+    document.getElementById("dept-quarter-target-label").textContent = "季目标";
+    document.getElementById("dept-quarter-target-value").textContent = wan(deptQuarterTarget);
+    document.getElementById("dept-quarter-target-note").textContent = `季金额 ${wan(department.quarterActual)} / 季完成率 ${pct(deptQuarterRate)}`;
+    document.getElementById("dept-month-target-label").textContent = `${currentMonth.month}目标`;
+    document.getElementById("dept-month-target-value").textContent = wan(deptMonthTarget);
+    document.getElementById("dept-month-target-note").textContent = `${currentMonth.month}金额 ${wan(department.monthActual)} / ${currentMonth.month}完成率 ${pct(deptMonthRate)}`;
+    document.getElementById("dept-week-actual").textContent = wan(department.weekActual);
+
+    document.getElementById("allocation-strip").innerHTML = allocation.map((item) => `
+      <div class="alloc-cell">
+        ${item.month}
+        <strong>${item.ratio}%</strong>
+      </div>
+    `).join("");
+
+    document.getElementById("annual-bars").innerHTML = annualSorted.map((item) => `
+      <div class="rank-row ${item.cumulativeOver ? "over" : ""}">
+        <div class="name ${item.cumulativeOver ? "over" : ""}">${item.name}</div>
+        <div class="target">目标 ${wan(item.target)}</div>
+        <div class="track">
+          <div class="target-fill annual-target-fill" style="width:${item.target / maxAnnualTarget * 100}%"></div>
+          <div class="actual-fill annual-actual-fill" style="width:${item.actual / maxAnnualTarget * 100}%"></div>
+          <div class="track-number right">${wan(item.actual)}</div>
+        </div>
+        <div class="rate ${rateClass(item.annualRate)}">${pct(item.annualRate)}</div>
+      </div>
+    `).join("");
+
+    document.getElementById("monthly-bars").innerHTML = monthlySorted.map((item) => `
+      <div class="month-row ${item.monthlyOver ? "over" : ""}">
+        <div class="name ${item.monthlyOver ? "over" : ""}">${item.name}</div>
+        <div class="track">
+          <div class="target-fill month-target-fill" style="width:${item.monthTarget / maxMonthScale * 100}%"></div>
+          <div class="actual-fill month-actual-fill" style="width:${item.monthActual / maxMonthScale * 100}%"></div>
+          <div class="track-number left">${wan(item.monthActual)}</div>
+          <div class="track-number right">${wan(item.monthTarget)}</div>
+        </div>
+        <div class="rate ${rateClass(item.monthlyRate)}">${pct(item.monthlyRate)}</div>
+      </div>
+    `).join("");
+
+    document.getElementById("old-customer-annual-bars").innerHTML = oldAnnualSorted.map((item) => `
+      <div class="old-customer-row ${item.annualOver ? "over" : ""}">
+        <div class="name ${item.annualOver ? "over" : ""}">${item.name}</div>
+        <div class="track old-customer-track">
+          <div class="target-fill annual-target-fill" style="width:${item.target / oldMaxAnnualTarget * 100}%"></div>
+          <div class="actual-fill old-annual-fill" style="width:${item.annualActual / oldMaxAnnualTarget * 100}%"></div>
+          <div class="track-number left">${wan(item.annualActual)}</div>
+          <div class="track-number right">${wan(item.target)}</div>
+        </div>
+        <div class="rate ${rateClass(item.annualRate)}">${pct(item.annualRate)}</div>
+      </div>
+    `).join("");
+
+    document.getElementById("old-customer-quarter-bars").innerHTML = oldQuarterSorted.map((item) => `
+      <div class="old-customer-row ${item.quarterOver ? "over" : ""}">
+        <div class="name ${item.quarterOver ? "over" : ""}">${item.name}</div>
+        <div class="track old-customer-track">
+          <div class="target-fill month-target-fill" style="width:${item.quarterTarget / oldMaxQuarterScale * 100}%"></div>
+          <div class="actual-fill old-quarter-fill" style="width:${item.quarterActual / oldMaxQuarterScale * 100}%"></div>
+          <div class="track-number left">${wan(item.quarterActual)}</div>
+          <div class="track-number right">${wan(item.quarterTarget)}</div>
+        </div>
+        <div class="rate ${rateClass(item.quarterRate)}">${pct(item.quarterRate)}</div>
+      </div>
+    `).join("");
+
+    document.getElementById("old-customer-month-bars").innerHTML = oldMonthSorted.map((item) => `
+      <div class="old-customer-row ${item.monthOver ? "over" : ""}">
+        <div class="name ${item.monthOver ? "over" : ""}">${item.name}</div>
+        <div class="track old-customer-track">
+          <div class="target-fill month-target-fill" style="width:${item.monthTarget / oldMaxMonthScale * 100}%"></div>
+          <div class="actual-fill old-month-fill" style="width:${item.monthActual / oldMaxMonthScale * 100}%"></div>
+          <div class="track-number left">${wan(item.monthActual)}</div>
+          <div class="track-number right">${wan(item.monthTarget)}</div>
+        </div>
+        <div class="rate ${rateClass(item.monthRate)}">${pct(item.monthRate)}</div>
+      </div>
+    `).join("");
+
+    document.getElementById("ambassador-rows").innerHTML = `
+      <table class="ambassador-table">
+        <thead>
+          <tr>
+            <th class="name-col">姓名</th>
+            <th class="num-col">推广大使总数</th>
+            <th class="num-col">月目标</th>
+            <th class="num-col">月完成</th>
+            <th>完成率</th>
+            <th class="num-col">本周目标</th>
+            <th class="num-col">周完成</th>
+            <th>完成率</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${ambassadorSorted.map((item) => `
+            <tr>
+              <td class="name">${item.name}</td>
+              <td class="count-col">${fmt(item.annualTotal)}</td>
+              <td class="num-col">${fmt(item.monthTarget)}</td>
+              <td class="num-col">${fmt(item.monthDone)}</td>
+              <td>
+                <div class="ambassador-rate-cell">
+                  <div class="ambassador-rate-top">
+                    <span class="ambassador-rate-value ${rateClass(item.monthRate)}">${pct(item.monthRate)}</span>
+                  </div>
+                  <div class="ambassador-track">
+                    <div class="ambassador-target-fill" style="width:${item.monthTarget / ambassadorMaxMonthScale * 100}%"></div>
+                    <div class="ambassador-actual-fill ambassador-month-fill" style="width:${item.monthDone / ambassadorMaxMonthScale * 100}%"></div>
+                  </div>
+                </div>
+              </td>
+              <td class="num-col">${fmt(item.weekTarget)}</td>
+              <td class="num-col">${fmt(item.weekDone)}</td>
+              <td>
+                <div class="ambassador-rate-cell">
+                  <div class="ambassador-rate-top">
+                    <span class="ambassador-rate-value ${rateClass(item.weekRate)}">${pct(item.weekRate)}</span>
+                  </div>
+                  <div class="ambassador-track">
+                    <div class="ambassador-target-fill" style="width:${item.weekTarget / ambassadorMaxWeekScale * 100}%"></div>
+                    <div class="ambassador-actual-fill ambassador-week-fill" style="width:${item.weekDone / ambassadorMaxWeekScale * 100}%"></div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    `;
+  </script>
+</body>
+</html>
