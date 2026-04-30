@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -30,6 +30,7 @@
       margin: 0;
       color: var(--ink);
       font-family: "Aptos", "Microsoft YaHei UI", "PingFang SC", sans-serif;
+      scroll-behavior: smooth;
       background:
         radial-gradient(circle at 0% 0%, rgba(203, 122, 38, 0.14), transparent 24%),
         radial-gradient(circle at 100% 10%, rgba(14, 106, 77, 0.16), transparent 24%),
@@ -37,8 +38,180 @@
     }
 
     .shell {
-      width: min(1480px, calc(100% - 28px));
+      width: min(1680px, calc(100% - 18px));
       margin: 18px auto 36px;
+    }
+
+    .dashboard-layout {
+      display: grid;
+      grid-template-columns: 84px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+      transition: grid-template-columns 0.22s ease;
+    }
+
+    .dashboard-layout.sidebar-expanded {
+      grid-template-columns: 248px minmax(0, 1fr);
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 18px;
+      padding: 18px 16px;
+      border-radius: 28px;
+      color: #f7f2eb;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(209, 65, 65, 0.18), transparent 30%),
+        linear-gradient(180deg, #161922 0%, #1c2030 100%);
+      box-shadow: 0 22px 48px rgba(15, 18, 29, 0.28);
+      transition: padding 0.22s ease, border-radius 0.22s ease;
+    }
+
+    .sidebar-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .sidebar-toggle {
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(247, 242, 235, 0.92);
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.18s ease, transform 0.18s ease;
+    }
+
+    .sidebar-toggle:hover {
+      background: rgba(255, 255, 255, 0.14);
+      transform: translateY(-1px);
+    }
+
+    .sidebar-title {
+      margin: 4px 8px 0;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(247, 242, 235, 0.54);
+    }
+
+    .nav-group {
+      display: grid;
+      gap: 10px;
+    }
+
+    .nav-item {
+      display: block;
+      width: 100%;
+      padding: 14px 14px;
+      border: 0;
+      border-radius: 18px;
+      background: transparent;
+      text-align: left;
+      color: rgba(247, 242, 235, 0.9);
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.25;
+      cursor: pointer;
+      transition: background 0.18s ease, transform 0.18s ease, color 0.18s ease;
+    }
+
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateX(2px);
+    }
+
+    .nav-item.is-primary {
+      background: linear-gradient(135deg, rgba(203, 122, 38, 0.22), rgba(181, 75, 75, 0.18));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-item.is-active,
+    .nav-subitem.is-active {
+      background: linear-gradient(135deg, rgba(203, 122, 38, 0.22), rgba(14, 106, 77, 0.18));
+      color: rgba(247, 242, 235, 0.98);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    }
+
+    .nav-subgroup {
+      margin: 2px 0 8px 12px;
+      padding-left: 12px;
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
+      display: grid;
+      gap: 8px;
+    }
+
+    .nav-subitem {
+      display: block;
+      width: 100%;
+      padding: 10px 12px;
+      border: 0;
+      border-radius: 14px;
+      background: transparent;
+      text-align: left;
+      color: rgba(247, 242, 235, 0.72);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.3;
+      cursor: pointer;
+      transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+    }
+
+    .nav-subitem:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(247, 242, 235, 0.92);
+      transform: translateX(2px);
+    }
+
+    .nav-item.is-disabled,
+    .nav-subitem.is-disabled {
+      opacity: 0.45;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .dashboard-layout:not(.sidebar-expanded) .sidebar {
+      padding: 14px 10px;
+    }
+
+    .dashboard-layout:not(.sidebar-expanded) .sidebar-title,
+    .dashboard-layout:not(.sidebar-expanded) .nav-subgroup {
+      display: none;
+    }
+
+    .dashboard-layout:not(.sidebar-expanded) .nav-item,
+    .dashboard-layout:not(.sidebar-expanded) .nav-subitem {
+      position: relative;
+      padding: 12px 6px;
+      text-align: center;
+      font-size: 0;
+      min-height: 48px;
+    }
+
+    .dashboard-layout:not(.sidebar-expanded) .nav-item::after,
+    .dashboard-layout:not(.sidebar-expanded) .nav-subitem::after {
+      content: attr(data-short);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .dashboard-main {
+      min-width: 0;
+    }
+
+    .anchor-target {
+      scroll-margin-top: 18px;
     }
 
     .hero {
@@ -124,6 +297,34 @@
       font-weight: 900;
       letter-spacing: -0.03em;
       color: var(--ink);
+      display: none;
+    }
+
+    .section-hidden {
+      display: none !important;
+    }
+
+    .grid.view-sales .sales-card {
+      grid-column: span 6;
+    }
+
+    .grid.view-presale-bundle .presale-card,
+    .grid.view-presale-bundle .focus-card,
+    .grid.view-focus .focus-card {
+      grid-column: span 12;
+    }
+
+    .grid.view-old-only .old-customer-card,
+    .grid.view-old-bundle .old-customer-card {
+      grid-column: span 4;
+    }
+
+    .grid.view-ambassador .ambassador-card {
+      grid-column: span 12;
+    }
+
+    .grid.view-old-bundle .ambassador-card {
+      grid-column: span 12;
     }
 
     .section-note {
@@ -455,16 +656,16 @@
 
     .old-customer-grid {
       display: grid;
-      gap: 14px;
+      gap: 10px;
     }
 
     .old-customer-row {
       display: grid;
-      grid-template-columns: 92px minmax(140px, 1fr) 96px;
-      gap: 12px;
+      grid-template-columns: 70px minmax(82px, 1fr) 70px;
+      gap: 8px;
       align-items: center;
-      padding: 10px 12px;
-      border-radius: 18px;
+      padding: 8px 10px;
+      border-radius: 16px;
       border: 1px solid transparent;
     }
 
@@ -476,6 +677,28 @@
     .old-customer-track .track-number.left {
       color: #f6f3ea;
       text-shadow: none;
+    }
+
+    .old-customer-card .section-title {
+      font-size: 18px;
+    }
+
+    .old-customer-card .section-note,
+    .old-customer-card .legend span {
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .old-customer-card .title-row {
+      margin-bottom: 12px;
+    }
+
+    .old-customer-card .name {
+      font-size: 14px;
+    }
+
+    .old-customer-card .rate {
+      font-size: 13px;
     }
 
     .old-annual-fill {
@@ -509,14 +732,14 @@
 
     .ambassador-table {
         width: 100%;
-        min-width: 980px;
+        min-width: 920px;
         table-layout: fixed;
         border-collapse: collapse;
       }
 
     .ambassador-table th,
     .ambassador-table td {
-        padding: 8px 12px;
+        padding: 7px 8px;
         border: 1px solid rgba(31, 42, 38, 0.24);
         vertical-align: middle;
       }
@@ -535,27 +758,27 @@
     }
 
     .ambassador-table .name-col {
-      width: 120px;
+      width: 92px;
     }
 
     .ambassador-table .count-col {
-      width: 140px;
+      width: 112px;
       text-align: center;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       color: var(--ink);
       white-space: nowrap;
     }
 
     .ambassador-table .num-col {
-        width: 110px;
+        width: 76px;
         text-align: center;
         font-variant-numeric: tabular-nums;
         white-space: nowrap;
       }
 
     .ambassador-table .rate-col {
-        width: 110px;
+        width: 92px;
       }
 
     .ambassador-table th:nth-child(5),
@@ -564,6 +787,100 @@
     .ambassador-table td:nth-child(8) {
         width: 110px;
       }
+
+    #presale-rows .ambassador-table {
+      min-width: 980px;
+      table-layout: fixed;
+    }
+
+    #presale-rows .ambassador-table th,
+    #presale-rows .ambassador-table td {
+      padding: 5px 6px;
+      font-size: 13px;
+    }
+
+    #presale-rows .ambassador-table .name-col {
+      width: 90px;
+    }
+
+    #presale-rows .ambassador-table .num-col {
+      width: 72px;
+    }
+
+    #presale-rows .ambassador-table th:nth-child(5),
+    #presale-rows .ambassador-table th:nth-child(7),
+    #presale-rows .ambassador-table td:nth-child(5),
+    #presale-rows .ambassador-table td:nth-child(7) {
+      width: 104px;
+    }
+
+    #presale-rows .ambassador-table th:nth-child(n + 8),
+    #presale-rows .ambassador-table td:nth-child(n + 8) {
+      width: 66px;
+    }
+
+    #focus-customer-rows .ambassador-table {
+      min-width: 1080px;
+      table-layout: auto;
+    }
+
+    #focus-customer-rows .ambassador-table th,
+    #focus-customer-rows .ambassador-table td {
+      padding: 8px 10px;
+      vertical-align: top;
+      line-height: 1.55;
+    }
+
+    #focus-customer-rows .ambassador-table .name-col {
+      width: 110px;
+    }
+
+    #focus-customer-rows .ambassador-table .code-col {
+      width: 132px;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    #focus-customer-rows .ambassador-table .date-col {
+      width: 116px;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    #focus-customer-rows .ambassador-table .days-col {
+      width: 92px;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    #focus-customer-rows .ambassador-table .version-col {
+      width: 140px;
+      text-align: center;
+    }
+
+    #focus-customer-rows .ambassador-table .amount-col {
+      width: 124px;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    #focus-customer-rows .ambassador-table .summary-col {
+      min-width: 220px;
+      white-space: normal;
+      text-align: left;
+      word-break: break-word;
+    }
+
+    #focus-customer-rows .ambassador-table .advice-col {
+      min-width: 160px;
+      white-space: normal;
+      text-align: left;
+      word-break: break-word;
+    }
 
     .ambassador-rate-cell {
         width: 100%;
@@ -621,7 +938,45 @@
       font-weight: 700;
     }
 
+    .presale-count-cell {
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .presale-count-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 40px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(23, 53, 75, 0.08);
+      box-shadow: inset 0 0 0 1px rgba(31, 42, 38, 0.12);
+      cursor: help;
+    }
+
+    .presale-count-pill.has-codes {
+      background: rgba(14, 106, 77, 0.1);
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .presale-target-missing {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
     @media (max-width: 1220px) {
+      .dashboard-layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        position: static;
+      }
+      .dashboard-layout.sidebar-collapsed {
+        grid-template-columns: 1fr;
+      }
       .department-top {
         grid-template-columns: 1fr;
       }
@@ -636,6 +991,9 @@
     @media (max-width: 760px) {
       .shell {
         width: min(100% - 16px, 100%);
+      }
+      .sidebar {
+        padding: 14px 12px;
       }
       .hero,
       .card {
@@ -660,14 +1018,15 @@
     <section class="hero">
       <div class="eyebrow">Consulting Marketing 6</div>
       <h1>顾问营销六部经营看板</h1>
-      <p id="hero-note">统计日期 2026-04-28。当前页面按“当前月份”驱动展示：部门完成情况、销售全年目标完成情况、销售当月完成情况，以及截至当月的累计超额判断。</p>
+      <p id="hero-note">统计日期 2026-04-30。当前页面按“当前月份”驱动展示：部门完成情况、销售全年目标完成情况、销售当月完成情况，以及截至当月的累计超额判断。</p>
+      
     </section>
 
     <section class="grid">
-      <article class="card span-12">
+      <article class="card span-12" id="section-overview-card">
         <div class="title-row">
           <div>
-            <h2 class="section-title">第一行：部门完成情况</h2>
+            <h2 class="section-title">部门总览</h2>
             <div class="section-note">这一行只放年、季、月、周的核心结果。季/月完成率按目标算法计算，不直接取页面原值。</div>
           </div>
           <div class="section-note">负责人：叶桢</div>
@@ -728,7 +1087,7 @@
 
       <div class="row-heading">第二行：销售业绩达成情况</div>
 
-      <article class="card span-6">
+      <article class="card span-6 sales-card" id="section-sales-annual-card">
         <div class="title-row">
           <div>
             <h2 class="section-title">销售全年目标完成情况</h2>
@@ -742,11 +1101,11 @@
         <div class="rank-grid" id="annual-bars"></div>
       </article>
 
-      <article class="card span-6">
+      <article class="card span-6 sales-card" id="section-sales-monthly-card">
         <div class="title-row">
           <div>
             <h2 class="section-title">销售每月完成情况</h2>
-            <div class="section-note" id="monthly-note">按当月完成率倒序。月度图与年度同规格：目标底条，完成覆盖条，数字都压在同一条上。</div>
+            <div class="section-note" id="monthly-note">按当月完成率倒序。月度图与年度同规格：目标底条、完成覆盖条，数字都压在同一条上。</div>
           </div>
           <div class="legend">
             <span><i class="swatch" style="background:rgba(23,53,75,0.32)"></i>当月目标</span>
@@ -758,7 +1117,7 @@
 
       <div class="row-heading">第三行：老客户业绩达成情况</div>
 
-      <article class="card span-4">
+      <article class="card span-4 old-customer-card" id="section-old-annual-card">
         <div class="title-row">
           <div>
             <h2 class="section-title">老客户年度</h2>
@@ -772,7 +1131,7 @@
         <div class="old-customer-grid" id="old-customer-annual-bars"></div>
       </article>
 
-      <article class="card span-4">
+      <article class="card span-4 old-customer-card" id="section-old-quarter-card">
         <div class="title-row">
           <div>
             <h2 class="section-title">老客户季度</h2>
@@ -786,7 +1145,7 @@
         <div class="old-customer-grid" id="old-customer-quarter-bars"></div>
       </article>
 
-      <article class="card span-4">
+      <article class="card span-4 old-customer-card" id="section-old-month-card">
         <div class="title-row">
           <div>
             <h2 class="section-title">老客户月度</h2>
@@ -802,11 +1161,11 @@
 
       <div class="row-heading">第四行：推广大使达成情况</div>
 
-      <article class="card span-12">
+      <article class="card span-12 ambassador-card" id="section-ambassador-card">
         <div class="title-row">
           <div>
             <h2 class="section-title">推广大使</h2>
-            <div class="section-note" id="ambassador-note">按顾问营销六部员工列示。累计推广大使数统计区间为 2026-01-01 至 2026-04-28；4 月目标按你提供的目标值；周目标 = 月目标 / 5，当前按 2026-04-27 至 2026-04-30 统计。</div>
+            <div class="section-note" id="ambassador-note">按顾问营销六部员工列示。累计推广大使数统计区间为 2026-01-01 至 2026-04-28；4月目标按你提供的目标值；周目标 = 月目标 / 5，当前按 2026-04-27 至 2026-04-30 统计。</div>
           </div>
           <div class="legend">
             <span><i class="swatch" style="background:linear-gradient(90deg,#cb7a26,#e5b54f)"></i>月完成</span>
@@ -816,8 +1175,32 @@
         <div class="ambassador-table-wrap" id="ambassador-rows"></div>
       </article>
 
+      
+
+      <div class="row-heading">第五行：售前情况</div>
+
+      <article class="card span-12 presale-card" id="section-presale-card">
+        <div class="title-row">
+          <div>
+            <h2 class="section-title">售前情况</h2>
+            <div class="section-note" id="presale-note">按顾问营销六部员工列示，意向产品统一按好业财统计。当月售前按 2026-04-01 至 2026-04-30；待处理、已演示、跟进中、处理中、已沟通按近三个月 2026-02-01 至 2026-04-30 统计。将鼠标放到五类数量上可查看售前单号。</div>
+          </div>
+        </div>
+        <div class="ambassador-table-wrap" id="presale-rows"></div>
+      </article>
+
+      <article class="card span-12 focus-card" id="section-focus-card">
+        <div class="title-row">
+          <div>
+            <h2 class="section-title">重点跟进客户</h2>
+            <div class="section-note">仅展示意向产品为好业财、适配度为“产品完美匹配/核心需求能满足”、意向度为“强意向”，且当前处于待处理、处理中、已沟通、已演示、跟进中的售前客户；售前日期取售前时间。</div>
+          </div>
+        </div>
+        <div class="ambassador-table-wrap" id="focus-customer-rows"></div>
+      </article>
+
       <article class="card span-12">
-        <div class="footnote">数据说明：部门业绩完成情况来自北极星数智系统；个人全年/当月业绩来自阿里云 BI“明细表-电销录单”，组长姓名筛选为“叶桢”。页面按当前月份展示当月目标、当月业绩，并按“截至当前月份的累计完成业绩是否大于累计目标”判断是否超额。</div>
+        <div class="footnote">数据说明：部门业绩完成情况来自北极星数智系统；个人全年/当月业绩来自阿里 BI“明细表-电销录单”，组长姓名筛选为“叶桢”。页面按当前月份展示当月目标、当月业绩，并按“截至当前月份的累计完成业绩是否大于累计目标”判断是否超额。</div>
       </article>
     </section>
   </div>
@@ -850,13 +1233,13 @@
 
     const department = {
       annualTarget: 1350.00,
-      cumulativeActual: 376.86,
-      annualRate: 27.72,
-      sourceQuarterRate: 6.30,
-      sourceMonthRate: 6.30,
-      quarterActual: 86.90,
-      monthActual: 86.90,
-      weekActual: 16.79
+      cumulativeActual: 383.76,
+      annualRate: 28.43,
+      sourceQuarterRate: 6.96,
+      sourceMonthRate: 6.96,
+      quarterActual: 94.00,
+      monthActual: 94.00,
+      weekActual: 24.19
     };
 
     const oldCustomerPeople = [
@@ -888,18 +1271,18 @@
     });
 
     const ambassadorPeople = [
-      { name: "黄友桂", annualTotal: 31, monthTarget: 20, monthDone: 16, weekTarget: 4, weekDone: 0 },
-      { name: "金艳", annualTotal: 41, monthTarget: 16, monthDone: 20, weekTarget: 3.2, weekDone: 0 },
-      { name: "李一飞", annualTotal: 30, monthTarget: 16, monthDone: 13, weekTarget: 3.2, weekDone: 0 },
-      { name: "鲁金宸", annualTotal: 56, monthTarget: 16, monthDone: 13, weekTarget: 3.2, weekDone: 1 },
-      { name: "吕利", annualTotal: 41, monthTarget: 20, monthDone: 16, weekTarget: 4, weekDone: 0 },
-      { name: "全志斌", annualTotal: 40, monthTarget: 20, monthDone: 20, weekTarget: 4, weekDone: 3 },
-      { name: "阙剑红", annualTotal: 3, monthTarget: 0, monthDone: 0, weekTarget: 0, weekDone: 0 },
-      { name: "王伟鹏", annualTotal: 47, monthTarget: 20, monthDone: 23, weekTarget: 4, weekDone: 0 },
-      { name: "徐量", annualTotal: 82, monthTarget: 20, monthDone: 26, weekTarget: 4, weekDone: 0 },
-      { name: "叶桢", annualTotal: 0, monthTarget: 0, monthDone: 0, weekTarget: 0, weekDone: 0 },
-      { name: "应鹏翔", annualTotal: 19, monthTarget: 16, monthDone: 8, weekTarget: 3.2, weekDone: 1 },
-      { name: "于艳慧", annualTotal: 47, monthTarget: 20, monthDone: 16, weekTarget: 4, weekDone: 3 }
+      { name: "\u9ec4\u53cb\u6842", annualTotal: 31, monthTarget: 20, monthDone: 16, weekTarget: 4, weekDone: 0 },
+      { name: "\u91d1\u8273", annualTotal: 41, monthTarget: 16, monthDone: 20, weekTarget: 3.2, weekDone: 0 },
+      { name: "\u674e\u4e00\u98de", annualTotal: 33, monthTarget: 16, monthDone: 16, weekTarget: 3.2, weekDone: 3 },
+      { name: "\u9c81\u91d1\u5bb8", annualTotal: 60, monthTarget: 16, monthDone: 17, weekTarget: 3.2, weekDone: 5 },
+      { name: "\u5415\u5229", annualTotal: 43, monthTarget: 20, monthDone: 18, weekTarget: 4, weekDone: 2 },
+      { name: "\u5168\u5fd7\u658c", annualTotal: 41, monthTarget: 20, monthDone: 21, weekTarget: 4, weekDone: 4 },
+      { name: "\u9619\u5251\u7ea2", annualTotal: 3, monthTarget: 0, monthDone: 0, weekTarget: 0, weekDone: 0 },
+      { name: "\u738b\u4f1f\u9e4f", annualTotal: 47, monthTarget: 20, monthDone: 23, weekTarget: 4, weekDone: 0 },
+      { name: "\u5f90\u91cf", annualTotal: 85, monthTarget: 20, monthDone: 29, weekTarget: 4, weekDone: 3 },
+      { name: "\u53f6\u6862", annualTotal: 0, monthTarget: 0, monthDone: 0, weekTarget: 0, weekDone: 0 },
+      { name: "\u5e94\u9e4f\u7fd4", annualTotal: 19, monthTarget: 16, monthDone: 8, weekTarget: 3.2, weekDone: 1 },
+      { name: "\u4e8e\u8273\u6167", annualTotal: 51, monthTarget: 20, monthDone: 20, weekTarget: 4, weekDone: 7 }
     ].map((item) => ({
       ...item,
       weekTarget: Math.ceil(item.monthTarget / 5),
@@ -910,16 +1293,16 @@
     [
       { annualTotal: 31, monthDone: 16, weekDone: 0 },
       { annualTotal: 41, monthDone: 20, weekDone: 0 },
-      { annualTotal: 31, monthDone: 14, weekDone: 1 },
-      { annualTotal: 56, monthDone: 13, weekDone: 1 },
+      { annualTotal: 33, monthDone: 16, weekDone: 3 },
+      { annualTotal: 60, monthDone: 17, weekDone: 5 },
       { annualTotal: 43, monthDone: 18, weekDone: 2 },
       { annualTotal: 41, monthDone: 21, weekDone: 4 },
       { annualTotal: 3, monthDone: 0, weekDone: 0 },
       { annualTotal: 47, monthDone: 23, weekDone: 0 },
-      { annualTotal: 83, monthDone: 27, weekDone: 1 },
+      { annualTotal: 85, monthDone: 29, weekDone: 3 },
       { annualTotal: 0, monthDone: 0, weekDone: 0 },
       { annualTotal: 19, monthDone: 8, weekDone: 1 },
-      { annualTotal: 47, monthDone: 16, weekDone: 3 }
+      { annualTotal: 51, monthDone: 20, weekDone: 7 }
     ].forEach((latest, index) => {
       ambassadorPeople[index].annualTotal = latest.annualTotal;
       ambassadorPeople[index].monthDone = latest.monthDone;
@@ -929,18 +1312,37 @@
       ambassadorPeople[index].weekRate = ambassadorPeople[index].weekTarget ? ambassadorPeople[index].weekDone / ambassadorPeople[index].weekTarget * 100 : 0;
     });
 
+    const presalePeople = [
+      { name: "\u9ec4\u53cb\u6842", annualDone: 9, monthTarget: null, monthDone: 2, dealDone: 0, dealRate: 0, pendingCount: 0, pendingCodes: [], demoCount: 1, demoCodes: ["20260427050"], followingCount: 0, followingCodes: [], processingCount: 0, processingCodes: [], communicatedCount: 0, communicatedCodes: [] },
+      { name: "\u91d1\u8273", annualDone: 41, monthTarget: null, monthDone: 9, dealDone: 2, dealRate: 22.22222222222222, pendingCount: 0, pendingCodes: [], demoCount: 2, demoCodes: ["20260426005", "20260424018"], followingCount: 4, followingCodes: ["20260411007", "20260410040", "20260409021", "20260407024"], processingCount: 1, processingCodes: ["20260429013"], communicatedCount: 0, communicatedCodes: [] },
+      { name: "\u674e\u4e00\u98de", annualDone: 11, monthTarget: null, monthDone: 5, dealDone: 0, dealRate: 0, pendingCount: 0, pendingCodes: [], demoCount: 1, demoCodes: ["20260428039"], followingCount: 2, followingCodes: ["20260421001", "20260305028"], processingCount: 1, processingCodes: ["20260425008"], communicatedCount: 0, communicatedCodes: [] },
+      { name: "\u9c81\u91d1\u5bb8", annualDone: 24, monthTarget: null, monthDone: 7, dealDone: 3, dealRate: 42.857142857142854, pendingCount: 0, pendingCodes: [], demoCount: 0, demoCodes: [], followingCount: 1, followingCodes: ["20260415012"], processingCount: 0, processingCodes: [], communicatedCount: 0, communicatedCodes: [] },
+      { name: "\u5415\u5229", annualDone: 35, monthTarget: null, monthDone: 4, dealDone: 0, dealRate: 0, pendingCount: 0, pendingCodes: [], demoCount: 0, demoCodes: [], followingCount: 1, followingCodes: ["20260414062"], processingCount: 1, processingCodes: ["20260429032"], communicatedCount: 0, communicatedCodes: [] },
+      { name: "\u9619\u5251\u7ea2", annualDone: 19, monthTarget: null, monthDone: 1, dealDone: 0, dealRate: 0, pendingCount: 0, pendingCodes: [], demoCount: 0, demoCodes: [], followingCount: 0, followingCodes: [], processingCount: 0, processingCodes: [], communicatedCount: 0, communicatedCodes: [] },
+      { name: "\u738b\u4f1f\u9e4f", annualDone: 15, monthTarget: null, monthDone: 6, dealDone: 0, dealRate: 0, pendingCount: 0, pendingCodes: [], demoCount: 0, demoCodes: [], followingCount: 0, followingCodes: [], processingCount: 2, processingCodes: ["20260427035", "20260428024"], communicatedCount: 0, communicatedCodes: [] },
+      { name: "\u5168\u5fd7\u658c", annualDone: 26, monthTarget: null, monthDone: 6, dealDone: 1, dealRate: 16.666666666666664, pendingCount: 0, pendingCodes: [], demoCount: 0, demoCodes: [], followingCount: 1, followingCodes: ["20260411004"], processingCount: 1, processingCodes: ["20260429021"], communicatedCount: 0, communicatedCodes: [] },
+      { name: "\u5f90\u91cf", annualDone: 44, monthTarget: null, monthDone: 14, dealDone: 3, dealRate: 21.428571428571427, pendingCount: 0, pendingCodes: [], demoCount: 1, demoCodes: ["20260424002"], followingCount: 1, followingCodes: ["20260321001"], processingCount: 1, processingCodes: ["20260428036"], communicatedCount: 0, communicatedCodes: [] },
+      { name: "\u53f6\u6862", annualDone: 0, monthTarget: null, monthDone: 0, dealDone: 0, dealRate: 0, pendingCount: 0, pendingCodes: [], demoCount: 0, demoCodes: [], followingCount: 0, followingCodes: [], processingCount: 0, processingCodes: [], communicatedCount: 0, communicatedCodes: [] },
+      { name: "\u5e94\u9e4f\u7fd4", annualDone: 12, monthTarget: null, monthDone: 5, dealDone: 1, dealRate: 20, pendingCount: 0, pendingCodes: [], demoCount: 2, demoCodes: ["20260427005", "20260420009"], followingCount: 0, followingCodes: [], processingCount: 0, processingCodes: [], communicatedCount: 0, communicatedCodes: [] },
+      { name: "\u4e8e\u8273\u6167", annualDone: 44, monthTarget: null, monthDone: 9, dealDone: 2, dealRate: 22.22222222222222, pendingCount: 0, pendingCodes: [], demoCount: 0, demoCodes: [], followingCount: 4, followingCodes: ["20260420051", "20260409039", "20260330003", "20260324023"], processingCount: 2, processingCodes: ["20260325020", "20260422009"], communicatedCount: 0, communicatedCodes: [] }
+    ].filter((item) => item.name !== "\u53f6\u6862").map((item) => ({
+      ...item,
+      monthTarget: 20,
+      monthRate: item.monthDone / 20 * 100
+    }));
+
     const people = [
-      { name: "金艳", target: 240.00, actual: 74.32, monthlyActuals: { 4: 12.34 } },
-      { name: "吕利", target: 170.00, actual: 46.22, monthlyActuals: { 4: 8.617 } },
-      { name: "于艳慧", target: 170.00, actual: 57.67, monthlyActuals: { 4: 14.00 } },
-      { name: "徐量", target: 160.00, actual: 44.29, monthlyActuals: { 4: 15.62 } },
-      { name: "李一飞", target: 150.00, actual: 36.62, monthlyActuals: { 4: 5.099 } },
-      { name: "黄友桂", target: 100.00, actual: 19.75, monthlyActuals: { 4: 4.844 } },
-      { name: "鲁金宸", target: 100.00, actual: 24.76, monthlyActuals: { 4: 5.119 } },
-      { name: "全志斌", target: 100.00, actual: 28.11, monthlyActuals: { 4: 5.313 } },
-      { name: "应鹏翔", target: 100.00, actual: 25.55, monthlyActuals: { 4: 3.658 } },
-      { name: "王伟鹏", target: 50.00, actual: 16.64, monthlyActuals: { 4: 11.67 } },
-      { name: "阙剑红", target: 50.00, actual: 26.81, monthlyActuals: { 4: 5.981 } }
+      { name: "\u91d1\u8273", target: 240.00, actual: 80.34, monthlyActuals: { 4: 18.36 } },
+      { name: "\u5415\u5229", target: 170.00, actual: 47.11, monthlyActuals: { 4: 9.51 } },
+      { name: "\u4e8e\u8273\u6167", target: 170.00, actual: 58.86, monthlyActuals: { 4: 15.19 } },
+      { name: "\u5f90\u91cf", target: 160.00, actual: 44.90, monthlyActuals: { 4: 16.22 } },
+      { name: "\u674e\u4e00\u98de", target: 150.00, actual: 36.63, monthlyActuals: { 4: 5.107 } },
+      { name: "\u9ec4\u53cb\u6842", target: 100.00, actual: 20.70, monthlyActuals: { 4: 5.794 } },
+      { name: "\u9c81\u91d1\u5bb8", target: 100.00, actual: 25.12, monthlyActuals: { 4: 5.479 } },
+      { name: "\u5168\u5fd7\u658c", target: 100.00, actual: 28.11, monthlyActuals: { 4: 5.313 } },
+      { name: "\u5e94\u9e4f\u7fd4", target: 100.00, actual: 25.55, monthlyActuals: { 4: 3.658 } },
+      { name: "\u738b\u4f1f\u9e4f", target: 50.00, actual: 16.64, monthlyActuals: { 4: 11.67 } },
+      { name: "\u9619\u5251\u7ea2", target: 50.00, actual: 26.85, monthlyActuals: { 4: 6.018 } }
     ].map((item) => {
       const monthTarget = item.target * currentMonth.ratio / 100;
       const monthActual = item.monthlyActuals[currentMonthIndex] ?? 0;
@@ -958,13 +1360,13 @@
     });
 
     [
-      { actual: 74.45, monthActual: 12.47 },
-      { actual: 46.22, monthActual: 8.617 },
-      { actual: 57.67, monthActual: 14.00 },
-      { actual: 44.51, monthActual: 15.83 },
-      { actual: 36.62, monthActual: 5.099 },
-      { actual: 19.75, monthActual: 4.844 },
-      { actual: 24.76, monthActual: 5.119 },
+      { actual: 80.34, monthActual: 18.36 },
+      { actual: 47.11, monthActual: 9.51 },
+      { actual: 58.86, monthActual: 15.19 },
+      { actual: 44.90, monthActual: 16.22 },
+      { actual: 36.63, monthActual: 5.107 },
+      { actual: 20.70, monthActual: 5.794 },
+      { actual: 25.12, monthActual: 5.479 },
       { actual: 28.11, monthActual: 5.313 },
       { actual: 25.55, monthActual: 3.658 },
       { actual: 16.64, monthActual: 11.67 },
@@ -978,6 +1380,26 @@
       people[index].cumulativeOver = people[index].actual > people[index].cumulativeTarget;
       people[index].monthlyOver = people[index].monthActual > people[index].monthTarget;
     });
+
+    const salesTotal = (() => {
+      const target = people.reduce((sum, item) => sum + item.target, 0);
+      const actual = people.reduce((sum, item) => sum + item.actual, 0);
+      const monthTarget = people.reduce((sum, item) => sum + item.monthTarget, 0);
+      const monthActual = people.reduce((sum, item) => sum + item.monthActual, 0);
+      return {
+        name: "累计",
+        target,
+        actual,
+        monthTarget,
+        monthActual,
+        annualRate: target ? actual / target * 100 : 0,
+        monthlyRate: monthTarget ? monthActual / monthTarget * 100 : 0,
+        cumulativeTarget: people.reduce((sum, item) => sum + item.cumulativeTarget, 0),
+        cumulativeOver: actual > people.reduce((sum, item) => sum + item.cumulativeTarget, 0),
+        monthlyOver: monthActual > monthTarget,
+        isTotal: true
+      };
+    })();
 
     const annualSorted = [...people].sort((a, b) => b.annualRate - a.annualRate);
     const monthlySorted = [...people].sort((a, b) => b.monthlyRate - a.monthlyRate);
@@ -1005,18 +1427,198 @@
     const deptMonthTarget = department.annualTarget * currentMonth.ratio / 100;
     const deptQuarterRate = department.quarterActual / deptQuarterTarget * 100;
     const deptMonthRate = department.monthActual / deptMonthTarget * 100;
+    const oldCustomerTotal = (() => {
+      const target = oldCustomerPeople.reduce((sum, item) => sum + item.target, 0);
+      const annualActual = oldCustomerPeople.reduce((sum, item) => sum + item.annualActual, 0);
+      const quarterTarget = oldCustomerPeople.reduce((sum, item) => sum + item.quarterTarget, 0);
+      const quarterActual = oldCustomerPeople.reduce((sum, item) => sum + item.quarterActual, 0);
+      const monthTarget = oldCustomerPeople.reduce((sum, item) => sum + item.monthTarget, 0);
+      const monthActual = oldCustomerPeople.reduce((sum, item) => sum + item.monthActual, 0);
+      return {
+        name: "累计",
+        target,
+        annualActual,
+        quarterTarget,
+        quarterActual,
+        monthTarget,
+        monthActual,
+        annualRate: target ? annualActual / target * 100 : 0,
+        quarterRate: quarterTarget ? quarterActual / quarterTarget * 100 : 0,
+        monthRate: monthTarget ? monthActual / monthTarget * 100 : 0,
+        annualOver: annualActual > target * cumulativeTargetRatio,
+        quarterOver: quarterActual > quarterTarget,
+        monthOver: monthActual > monthTarget,
+        isTotal: true
+      };
+    })();
+
     const oldAnnualSorted = [...oldCustomerPeople].sort((a, b) => b.annualRate - a.annualRate);
     const oldQuarterSorted = [...oldCustomerPeople].sort((a, b) => b.quarterRate - a.quarterRate);
     const oldMonthSorted = [...oldCustomerPeople].sort((a, b) => b.monthRate - a.monthRate);
-    const ambassadorSorted = [...ambassadorPeople].sort((a, b) => b.monthDone - a.monthDone);
+    const ambassadorVisible = ambassadorPeople.filter((item) => item.name !== "叶桢");
+    const ambassadorTotal = (() => {
+      const annualTotal = ambassadorVisible.reduce((sum, item) => sum + item.annualTotal, 0);
+      const monthTarget = ambassadorVisible.reduce((sum, item) => sum + item.monthTarget, 0);
+      const monthDone = ambassadorVisible.reduce((sum, item) => sum + item.monthDone, 0);
+      const weekTarget = ambassadorVisible.reduce((sum, item) => sum + item.weekTarget, 0);
+      const weekDone = ambassadorVisible.reduce((sum, item) => sum + item.weekDone, 0);
+      return {
+        name: "ϼ",
+        annualTotal,
+        monthTarget,
+        monthDone,
+        weekTarget,
+        weekDone,
+        monthRate: monthTarget ? monthDone / monthTarget * 100 : 0,
+        weekRate: weekTarget ? weekDone / weekTarget * 100 : 0,
+        isTotal: true
+      };
+    })();
+    const ambassadorSorted = [...ambassadorVisible].sort((a, b) => b.monthDone - a.monthDone);
     const oldMaxAnnualTarget = Math.max(...oldAnnualSorted.map((d) => d.target));
     const oldMaxQuarterScale = Math.max(...oldQuarterSorted.map((d) => Math.max(d.quarterTarget, d.quarterActual)));
     const oldMaxMonthScale = Math.max(...oldMonthSorted.map((d) => Math.max(d.monthTarget, d.monthActual)));
     const ambassadorMaxMonthScale = Math.max(...ambassadorSorted.map((d) => Math.max(d.monthTarget, d.monthDone, 1)));
     const ambassadorMaxWeekScale = Math.max(...ambassadorSorted.map((d) => Math.max(d.weekTarget, d.weekDone, 1)));
+    const presaleSorted = [...presalePeople].sort((a, b) => b.monthDone - a.monthDone || b.dealDone - a.dealDone);
+    const presaleTotal = presaleSorted.reduce((acc, item) => ({
+      name: "\u5408\u8ba1",
+      annualDone: acc.annualDone + item.annualDone,
+      monthTarget: acc.monthTarget + item.monthTarget,
+      monthDone: acc.monthDone + item.monthDone,
+      monthRate: 0,
+      dealDone: acc.dealDone + item.dealDone,
+      dealRate: 0,
+      pendingCount: acc.pendingCount + item.pendingCount,
+      pendingCodes: [],
+      demoCount: acc.demoCount + item.demoCount,
+      demoCodes: [],
+      followingCount: acc.followingCount + item.followingCount,
+      followingCodes: [],
+      processingCount: acc.processingCount + item.processingCount,
+      processingCodes: [],
+      communicatedCount: acc.communicatedCount + item.communicatedCount,
+      communicatedCodes: []
+    }), {
+      name: "\u5408\u8ba1",
+      annualDone: 0,
+      monthTarget: 0,
+      monthDone: 0,
+      monthRate: 0,
+      dealDone: 0,
+      dealRate: 0,
+      pendingCount: 0,
+      pendingCodes: [],
+      demoCount: 0,
+      demoCodes: [],
+      followingCount: 0,
+      followingCodes: [],
+      processingCount: 0,
+      processingCodes: [],
+      communicatedCount: 0,
+      communicatedCodes: []
+    });
+    presaleTotal.monthRate = presaleTotal.monthTarget ? presaleTotal.monthDone / presaleTotal.monthTarget * 100 : 0;
+    presaleTotal.dealRate = presaleTotal.monthDone ? presaleTotal.dealDone / presaleTotal.monthDone * 100 : 0;
+
+    const focusCustomers = [
+      {
+        "submitter": "\u91d1\u8273",
+        "presaleCode": "20260424018",
+        "presaleDate": "2026-04-27 16:00:00",
+        "recommendedVersion": "\u597d\u4e1a\u8d22\u4e1a\u52a1\u7248",
+        "estimatedAmount": 11980,
+        "summary": "\u6ee1\u610f\u5ea6\uff1a\u6ee1\u610f\u5ea6\u9ad8\u3001\u8ba4\u53ef\u9700\u6c42\u5339\u914d\u3001\u8ba4\u53ef\u987e\u95ee\u4e13\u4e1a\u6c9f\u901a\uff1b\u987e\u8651\uff1a\u5173\u6ce8\u5185\u90e8\u9884\u7b97\u5ba1\u6279"
+      },
+      {
+        "submitter": "\u4e8e\u8273\u6167",
+        "presaleCode": "20260420051",
+        "presaleDate": "2026-04-21 10:30:00",
+        "recommendedVersion": "\u597d\u4e1a\u8d22\u4e1a\u52a1\u7248",
+        "estimatedAmount": 11960,
+        "summary": "\u6ee1\u610f\u5ea6\uff1a\u6ee1\u610f\u5ea6\u9ad8\u3001\u8ba4\u53ef\u529f\u80fd\u6f14\u793a\u6e05\u6670\u3001\u8ba4\u53ef\u9700\u6c42\u5339\u914d\u3001\u8ba4\u53ef\u987e\u95ee\u4e13\u4e1a\u6c9f\u901a\uff1b\u987e\u8651\uff1a\u5173\u6ce8\u540e\u7eed\u5347\u7ea7\u6269\u5c55\u3001\u5173\u6ce8\u6570\u636e\u8fc1\u79fb\u4e0e\u5b89\u5168\u3001\u5173\u6ce8\u529f\u80fd\u7ec6\u8282\u786e\u8ba4"
+      },
+      {
+        "submitter": "\u5415\u5229",
+        "presaleCode": "20260414062",
+        "presaleDate": "2026-04-16 10:00:00",
+        "recommendedVersion": "\u597d\u4e1a\u8d22\u4e13\u4e1a\u7248",
+        "estimatedAmount": 11800,
+        "summary": "\u6ee1\u610f\u5ea6\uff1a\u6ee1\u610f\u5ea6\u9ad8\u3001\u8ba4\u53ef\u9700\u6c42\u5339\u914d\u3001\u8ba4\u53ef\u987e\u95ee\u4e13\u4e1a\u6c9f\u901a\uff1b\u987e\u8651\uff1a\u5173\u6ce8\u540e\u7eed\u5347\u7ea7\u6269\u5c55\u3001\u5173\u6ce8\u6570\u636e\u8fc1\u79fb\u4e0e\u5b89\u5168\u3001\u5173\u6ce8\u5185\u90e8\u9884\u7b97\u5ba1\u6279"
+      },
+      {
+        "submitter": "\u9c81\u91d1\u5bb8",
+        "presaleCode": "20260415012",
+        "presaleDate": "2026-04-16 09:00:00",
+        "recommendedVersion": "\u597d\u4e1a\u8d22\u6807\u51c6\u7248",
+        "estimatedAmount": 5660,
+        "summary": "\u6ee1\u610f\u5ea6\uff1a\u6ee1\u610f\u5ea6\u9ad8\u3001\u8ba4\u53ef\u987e\u95ee\u4e13\u4e1a\u6c9f\u901a\uff1b\u987e\u8651\uff1a\u5173\u6ce8\u6570\u636e\u8fc1\u79fb\u4e0e\u5b89\u5168\u3001\u5173\u6ce8\u529f\u80fd\u7ec6\u8282\u786e\u8ba4"
+      },
+      {
+        "submitter": "\u91d1\u8273",
+        "presaleCode": "20260410040",
+        "presaleDate": "2026-04-14 09:00:00",
+        "recommendedVersion": "\u597d\u4e1a\u8d22\u6807\u51c6\u7248",
+        "estimatedAmount": 5660,
+        "summary": "\u6ee1\u610f\u5ea6\uff1a\u6ee1\u610f\u5ea6\u9ad8\u3001\u8ba4\u53ef\u987e\u95ee\u4e13\u4e1a\u6c9f\u901a\uff1b\u987e\u8651\uff1a\u5173\u6ce8\u6570\u636e\u8fc1\u79fb\u4e0e\u5b89\u5168\u3001\u5173\u6ce8\u529f\u80fd\u7ec6\u8282\u786e\u8ba4\u3001\u5173\u6ce8\u5185\u90e8\u9884\u7b97\u5ba1\u6279"
+      },
+      {
+        "submitter": "\u4e8e\u8273\u6167",
+        "presaleCode": "20260409039",
+        "presaleDate": "2026-04-13 10:30:00",
+        "recommendedVersion": "\u597d\u4e1a\u8d22\u6807\u51c6\u7248",
+        "estimatedAmount": 11660,
+        "summary": "\u6ee1\u610f\u5ea6\uff1a\u6ee1\u610f\u5ea6\u9ad8\u3001\u8ba4\u53ef\u9700\u6c42\u5339\u914d\u3001\u8ba4\u53ef\u987e\u95ee\u4e13\u4e1a\u6c9f\u901a\uff1b\u987e\u8651\uff1a\u5173\u6ce8\u6570\u636e\u8fc1\u79fb\u4e0e\u5b89\u5168\u3001\u5173\u6ce8\u5185\u90e8\u9884\u7b97\u5ba1\u6279"
+      },
+      {
+        "submitter": "\u91d1\u8273",
+        "presaleCode": "20260409021",
+        "presaleDate": "2026-04-10 14:30:00",
+        "recommendedVersion": "\u597d\u4e1a\u8d22\u4e1a\u52a1\u7248",
+        "estimatedAmount": 6380,
+        "summary": "\u6ee1\u610f\u5ea6\uff1a\u6ee1\u610f\u5ea6\u9ad8\u3001\u8ba4\u53ef\u529f\u80fd\u6f14\u793a\u6e05\u6670\uff1b\u987e\u8651\uff1a\u5173\u6ce8\u5185\u90e8\u9884\u7b97\u5ba1\u6279"
+      },
+      {
+        "submitter": "\u4e8e\u8273\u6167",
+        "presaleCode": "20260324023",
+        "presaleDate": "2026-03-27 14:00:00",
+        "recommendedVersion": "\u597d\u4e1a\u8d22\u6807\u51c6\u7248",
+        "estimatedAmount": 5660,
+        "summary": "\u6ee1\u610f\u5ea6\uff1a\u6ee1\u610f\u5ea6\u9ad8\uff1b\u987e\u8651\uff1a\u5173\u6ce8\u5185\u90e8\u9884\u7b97\u5ba1\u6279"
+      },
+      {
+        "submitter": "\u5f90\u91cf",
+        "presaleCode": "20260321001",
+        "presaleDate": "2026-03-22 14:00:00",
+        "recommendedVersion": "\u597d\u4e1a\u8d22\u6807\u51c6\u7248",
+        "estimatedAmount": 31980,
+        "summary": "\u6ee1\u610f\u5ea6\uff1a\u6ee1\u610f\u5ea6\u9ad8\u3001\u8ba4\u53ef\u529f\u80fd\u6f14\u793a\u6e05\u6670\u3001\u8ba4\u53ef\u987e\u95ee\u4e13\u4e1a\u6c9f\u901a\uff1b\u987e\u8651\uff1a\u5173\u6ce8\u5185\u90e8\u9884\u7b97\u5ba1\u6279"
+      }
+    ].map((item) => ({
+      ...item,
+      summary: item.summary || "\u6682\u65e0"
+    }));
+
+    const focusToday = new Date("2026-04-30T00:00:00+08:00");
+    const focusCustomerSorted = [...focusCustomers].map((item) => {
+      const dateOnly = String(item.presaleDate || "").slice(0, 10);
+      const parsed = dateOnly ? new Date(`${dateOnly}T00:00:00+08:00`) : null;
+      const followDays = parsed ? Math.max(0, Math.floor((focusToday - parsed) / 86400000)) : 0;
+      const summaryText = String(item.summary || "暂无");
+      const satisfactionMatch = summaryText.match(/满意度[:：]([^；]+)/);
+      const concernMatch = summaryText.match(/顾虑[:：](.+)$/);
+      return {
+        ...item,
+        dateOnly,
+        followDays,
+        satisfaction: satisfactionMatch ? satisfactionMatch[1].trim() : "暂无",
+        concern: concernMatch ? concernMatch[1].trim() : "暂无",
+        advice: "待补"
+      };
+    }).sort((a, b) => Number(b.estimatedAmount || 0) - Number(a.estimatedAmount || 0));
 
     document.getElementById("hero-note").textContent =
-      `统计日期 2026-04-28。当前展示月份：${currentMonth.month}。页面中的“超额”统一指截至${currentMonth.month}的累计完成业绩大于累计目标。`;
+      `统计日期 2026-04-30。当前展示月份：${currentMonth.month}。页面中的“超额”统一指截至${currentMonth.month}的累计完成业绩大于累计目标。`;
     document.getElementById("annual-note").textContent =
       `按年完成率倒序。当前超额口径：1-${currentMonthIndex}月累计完成业绩 > 1-${currentMonthIndex}月累计目标（累计目标比例 ${Math.round(cumulativeTargetRatio * 100)}%）。`;
     document.getElementById("monthly-note").textContent =
@@ -1054,8 +1656,14 @@
 
     const ambassadorNote = document.getElementById("ambassador-note");
     if (ambassadorNote) {
-      ambassadorNote.textContent = "按顾问营销六部员工列示。累计推广大使数统计区间为 2026-01-01 至 2026-04-29；4 月目标按你提供的目标值；周目标 = 月目标 / 5 后向上取整，当前按 2026-04-27 至 2026-04-30 统计。";
+      ambassadorNote.textContent = "按顾问营销六部员工列示。累计推广大使数统计区间为 2026-01-01 至 2026-04-30；4月目标按你提供的目标值；周目标 = 月目标 / 5 后向上取整，当前按 2026-04-27 至 2026-04-30 统计。";
     }
+
+    const metricTitle = (label, codes) =>
+      codes && codes.length ? `${label}单号：${codes.join("、")}` : `${label}单号：暂无`;
+
+    const metricPill = (value, label, codes) =>
+      `<span class="presale-count-pill ${codes && codes.length ? "has-codes" : ""}" title="${metricTitle(label, codes)}">${fmt(value)}</span>`;
 
     document.getElementById("dept-annual-target").textContent = wan(department.annualTarget);
     document.getElementById("dept-cumulative-actual").textContent = wan(department.cumulativeActual);
@@ -1078,25 +1686,25 @@
       </div>
     `).join("");
 
-    document.getElementById("annual-bars").innerHTML = annualSorted.map((item) => `
+    document.getElementById("annual-bars").innerHTML = [...annualSorted, salesTotal].map((item) => `
       <div class="rank-row ${item.cumulativeOver ? "over" : ""}">
         <div class="name ${item.cumulativeOver ? "over" : ""}">${item.name}</div>
-        <div class="target">目标 ${wan(item.target)}</div>
+        <div class="target">${item.isTotal ? "累计" : "目标"} ${wan(item.target)}</div>
         <div class="track">
-          <div class="target-fill annual-target-fill" style="width:${item.target / maxAnnualTarget * 100}%"></div>
-          <div class="actual-fill annual-actual-fill" style="width:${item.actual / maxAnnualTarget * 100}%"></div>
+          <div class="target-fill annual-target-fill" style="width:${item.isTotal ? 100 : Math.min(item.target / maxAnnualTarget * 100, 100)}%"></div>
+          <div class="actual-fill annual-actual-fill" style="width:${item.isTotal ? Math.min(item.annualRate, 100) : Math.min(item.actual / maxAnnualTarget * 100, 100)}%"></div>
           <div class="track-number right">${wan(item.actual)}</div>
         </div>
         <div class="rate ${rateClass(item.annualRate)}">${pct(item.annualRate)}</div>
       </div>
     `).join("");
 
-    document.getElementById("monthly-bars").innerHTML = monthlySorted.map((item) => `
+    document.getElementById("monthly-bars").innerHTML = [...monthlySorted, salesTotal].map((item) => `
       <div class="month-row ${item.monthlyOver ? "over" : ""}">
         <div class="name ${item.monthlyOver ? "over" : ""}">${item.name}</div>
         <div class="track">
-          <div class="target-fill month-target-fill" style="width:${item.monthTarget / maxMonthScale * 100}%"></div>
-          <div class="actual-fill month-actual-fill" style="width:${item.monthActual / maxMonthScale * 100}%"></div>
+          <div class="target-fill month-target-fill" style="width:${item.isTotal ? 100 : Math.min(item.monthTarget / maxMonthScale * 100, 100)}%"></div>
+          <div class="actual-fill month-actual-fill" style="width:${item.isTotal ? Math.min(item.monthlyRate, 100) : Math.min(item.monthActual / maxMonthScale * 100, 100)}%"></div>
           <div class="track-number left">${wan(item.monthActual)}</div>
           <div class="track-number right">${wan(item.monthTarget)}</div>
         </div>
@@ -1104,12 +1712,12 @@
       </div>
     `).join("");
 
-    document.getElementById("old-customer-annual-bars").innerHTML = oldAnnualSorted.map((item) => `
+    document.getElementById("old-customer-annual-bars").innerHTML = [...oldAnnualSorted, oldCustomerTotal].map((item) => `
       <div class="old-customer-row ${item.annualOver ? "over" : ""}">
         <div class="name ${item.annualOver ? "over" : ""}">${item.name}</div>
         <div class="track old-customer-track">
-          <div class="target-fill annual-target-fill" style="width:${item.target / oldMaxAnnualTarget * 100}%"></div>
-          <div class="actual-fill old-annual-fill" style="width:${item.annualActual / oldMaxAnnualTarget * 100}%"></div>
+          <div class="target-fill annual-target-fill" style="width:${item.isTotal ? 100 : Math.min(item.target / oldMaxAnnualTarget * 100, 100)}%"></div>
+          <div class="actual-fill old-annual-fill" style="width:${item.isTotal ? Math.min(item.annualRate, 100) : Math.min(item.annualActual / oldMaxAnnualTarget * 100, 100)}%"></div>
           <div class="track-number left">${wan(item.annualActual)}</div>
           <div class="track-number right">${wan(item.target)}</div>
         </div>
@@ -1117,12 +1725,12 @@
       </div>
     `).join("");
 
-    document.getElementById("old-customer-quarter-bars").innerHTML = oldQuarterSorted.map((item) => `
+    document.getElementById("old-customer-quarter-bars").innerHTML = [...oldQuarterSorted, oldCustomerTotal].map((item) => `
       <div class="old-customer-row ${item.quarterOver ? "over" : ""}">
         <div class="name ${item.quarterOver ? "over" : ""}">${item.name}</div>
         <div class="track old-customer-track">
-          <div class="target-fill month-target-fill" style="width:${item.quarterTarget / oldMaxQuarterScale * 100}%"></div>
-          <div class="actual-fill old-quarter-fill" style="width:${item.quarterActual / oldMaxQuarterScale * 100}%"></div>
+          <div class="target-fill month-target-fill" style="width:${item.isTotal ? 100 : Math.min(item.quarterTarget / oldMaxQuarterScale * 100, 100)}%"></div>
+          <div class="actual-fill old-quarter-fill" style="width:${item.isTotal ? Math.min(item.quarterRate, 100) : Math.min(item.quarterActual / oldMaxQuarterScale * 100, 100)}%"></div>
           <div class="track-number left">${wan(item.quarterActual)}</div>
           <div class="track-number right">${wan(item.quarterTarget)}</div>
         </div>
@@ -1130,12 +1738,12 @@
       </div>
     `).join("");
 
-    document.getElementById("old-customer-month-bars").innerHTML = oldMonthSorted.map((item) => `
+    document.getElementById("old-customer-month-bars").innerHTML = [...oldMonthSorted, oldCustomerTotal].map((item) => `
       <div class="old-customer-row ${item.monthOver ? "over" : ""}">
         <div class="name ${item.monthOver ? "over" : ""}">${item.name}</div>
         <div class="track old-customer-track">
-          <div class="target-fill month-target-fill" style="width:${item.monthTarget / oldMaxMonthScale * 100}%"></div>
-          <div class="actual-fill old-month-fill" style="width:${item.monthActual / oldMaxMonthScale * 100}%"></div>
+          <div class="target-fill month-target-fill" style="width:${item.isTotal ? 100 : Math.min(item.monthTarget / oldMaxMonthScale * 100, 100)}%"></div>
+          <div class="actual-fill old-month-fill" style="width:${item.isTotal ? Math.min(item.monthRate, 100) : Math.min(item.monthActual / oldMaxMonthScale * 100, 100)}%"></div>
           <div class="track-number left">${wan(item.monthActual)}</div>
           <div class="track-number right">${wan(item.monthTarget)}</div>
         </div>
@@ -1158,7 +1766,7 @@
           </tr>
         </thead>
         <tbody>
-          ${ambassadorSorted.map((item) => `
+          ${[...ambassadorSorted, ambassadorTotal].map((item) => `
             <tr>
               <td class="name">${item.name}</td>
               <td class="count-col">${fmt(item.annualTotal)}</td>
@@ -1193,6 +1801,276 @@
         </tbody>
       </table>
     `;
+
+    document.getElementById("presale-rows").innerHTML = `
+      <table class="ambassador-table">
+        <thead>
+          <tr>
+            <th class="name-col">\u59d3\u540d</th>
+            <th class="num-col">\u5168\u5e74\u552e\u524d\u91cf</th>
+            <th class="num-col">\u5f53\u6708\u76ee\u6807</th>
+            <th class="num-col">\u5f53\u6708\u5df2\u5b8c\u6210</th>
+            <th>\u5b8c\u6210\u7387</th>
+            <th class="num-col">\u5df2\u6210\u4ea4</th>
+            <th>\u6210\u4ea4\u7387</th>
+            <th class="num-col">\u5f85\u5904\u7406\u6570</th>
+            <th class="num-col">\u5df2\u6f14\u793a\u6570</th>
+            <th class="num-col">\u8ddf\u8fdb\u4e2d\u6570</th>
+            <th class="num-col">\u5904\u7406\u4e2d\u6570</th>
+            <th class="num-col">\u5df2\u6c9f\u901a\u6570</th>
+            <th class="num-col">\u53ef\u8ddf\u8fdb\u5ba2\u6237\u6570</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${[...presaleSorted, presaleTotal].map((item) => `
+            <tr>
+              <td class="name">${item.name}</td>
+              <td class="num-col">${fmt(item.annualDone)}</td>
+              <td class="num-col">${item.monthTarget == null ? `<span class="presale-target-missing">\u5f85\u8865</span>` : fmt(item.monthTarget)}</td>
+              <td class="num-col">${fmt(item.monthDone)}</td>
+              <td>
+                <div class="ambassador-rate-cell">
+                  <div class="ambassador-rate-top">
+                    <span class="ambassador-rate-value ${item.monthRate == null ? "" : rateClass(item.monthRate)}">${item.monthRate == null ? "--" : pct(item.monthRate)}</span>
+                  </div>
+                  <div class="ambassador-track">
+                    <div class="ambassador-target-fill" style="width:${item.monthTarget ? 100 : 0}%"></div>
+                    <div class="ambassador-actual-fill ambassador-month-fill" style="width:${item.monthRate == null ? 0 : Math.min(item.monthRate, 100)}%"></div>
+                  </div>
+                </div>
+              </td>
+              <td class="num-col">${fmt(item.dealDone)}</td>
+              <td>
+                <div class="ambassador-rate-cell">
+                  <div class="ambassador-rate-top">
+                    <span class="ambassador-rate-value ${rateClass(item.dealRate)}">${pct(item.dealRate)}</span>
+                  </div>
+                  <div class="ambassador-track">
+                    <div class="ambassador-target-fill" style="width:100%"></div>
+                    <div class="ambassador-actual-fill ambassador-week-fill" style="width:${Math.min(item.dealRate, 100)}%"></div>
+                  </div>
+                </div>
+              </td>
+              <td class="presale-count-cell">${metricPill(item.pendingCount, "待处理", item.pendingCodes)}</td>
+              <td class="presale-count-cell">${metricPill(item.demoCount, "已演示", item.demoCodes)}</td>
+              <td class="presale-count-cell">${metricPill(item.followingCount, "跟进中", item.followingCodes)}</td>
+              <td class="presale-count-cell">${metricPill(item.processingCount, "处理中", item.processingCodes)}</td>
+              <td class="presale-count-cell">${metricPill(item.communicatedCount, "已沟通", item.communicatedCodes)}</td>
+              <td class="presale-count-cell">${fmt(item.pendingCount + item.demoCount + item.followingCount + item.processingCount + item.communicatedCount)}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    `;
+
+    document.getElementById("focus-customer-rows").innerHTML = `
+      <table class="ambassador-table focus-customer-table">
+        <thead>
+          <tr>
+            <th class="name-col">\u63d0\u5355\u4eba</th>
+            <th class="code-col">\u552e\u524d\u5355\u53f7</th>
+            <th class="date-col">\u552e\u524d\u65e5\u671f</th>
+            <th class="days-col">\u8ddf\u8fdb\u5929\u6570</th>
+            <th class="version-col">\u63a8\u8350\u7248\u672c</th>
+            <th class="amount-col">\u9884\u8ba1\u6210\u4ea4\u91d1\u989d</th>
+            <th class="summary-col">\u6ee1\u610f\u5ea6</th>
+            <th class="summary-col">\u987e\u8651</th>
+            <th class="advice-col">\u8ddf\u8fdb\u5efa\u8bae</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${focusCustomerSorted.map((item) => `
+            <tr>
+              <td class="name">${item.submitter}</td>
+              <td class="code-col">${item.presaleCode}</td>
+              <td class="date-col">${item.dateOnly}</td>
+              <td class="days-col">${fmt(item.followDays)}</td>
+              <td class="version-col">${item.recommendedVersion}</td>
+              <td class="amount-col">${Number(item.estimatedAmount || 0).toFixed(2)}</td>
+              <td class="summary-col">${item.satisfaction}</td>
+              <td class="summary-col">${item.concern}</td>
+              <td class="advice-col">${item.advice}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    `;
+
+    const shell = document.querySelector(".shell");
+    const hero = shell?.querySelector(".hero");
+    const grid = shell?.querySelector(".grid");
+    if (shell && hero && grid && !shell.querySelector(".sidebar")) {
+      const layout = document.createElement("div");
+      layout.className = "dashboard-layout";
+
+      const sidebar = document.createElement("aside");
+      sidebar.className = "sidebar";
+
+      const sidebarTop = document.createElement("div");
+      sidebarTop.className = "sidebar-top";
+
+      const sidebarTitle = document.createElement("div");
+      sidebarTitle.className = "sidebar-title";
+      sidebarTitle.textContent = "主题导航";
+
+      const sidebarToggle = document.createElement("button");
+      sidebarToggle.type = "button";
+      sidebarToggle.className = "sidebar-toggle";
+      sidebarToggle.setAttribute("aria-label", "收起导航");
+      sidebarToggle.textContent = "≡";
+
+      const navGroup = document.createElement("nav");
+      navGroup.className = "nav-group";
+
+      function makeNavButton(label, view, className = "nav-item") {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = className;
+        button.dataset.view = view;
+        button.dataset.short = label.length >= 2 ? label.slice(0, 2) : label;
+        button.textContent = label;
+        return button;
+      }
+
+      const navOverview = makeNavButton("部门总览", "overview", "nav-item is-primary is-active");
+      const navSales = makeNavButton("销售收入", "sales");
+      const navOldBundle = makeNavButton("老客户收入", "old-bundle");
+      const navPresaleBundle = makeNavButton("售前情况", "presale-bundle");
+
+      const oldSubgroup = document.createElement("div");
+      oldSubgroup.className = "nav-subgroup";
+      oldSubgroup.appendChild(makeNavButton("老客户收入", "old-only", "nav-subitem"));
+      oldSubgroup.appendChild(makeNavButton("推广大使", "ambassador", "nav-subitem"));
+
+      const presaleSubgroup = document.createElement("div");
+      presaleSubgroup.className = "nav-subgroup";
+      presaleSubgroup.appendChild(makeNavButton("售前量", "presale", "nav-subitem"));
+      presaleSubgroup.appendChild(makeNavButton("重点客户", "focus", "nav-subitem"));
+
+      const navConversion = document.createElement("span");
+      navConversion.className = "nav-item is-disabled";
+      navConversion.textContent = "转化情况";
+
+      const conversionSubgroup = document.createElement("div");
+      conversionSubgroup.className = "nav-subgroup";
+      const conversionPlaceholder = document.createElement("span");
+      conversionPlaceholder.className = "nav-subitem is-disabled";
+      conversionPlaceholder.textContent = "待补充";
+      conversionSubgroup.appendChild(conversionPlaceholder);
+
+      navGroup.appendChild(navOverview);
+      navGroup.appendChild(navSales);
+      navGroup.appendChild(navOldBundle);
+      navGroup.appendChild(oldSubgroup);
+      navGroup.appendChild(navPresaleBundle);
+      navGroup.appendChild(presaleSubgroup);
+      navGroup.appendChild(navConversion);
+      navGroup.appendChild(conversionSubgroup);
+
+      sidebarTop.appendChild(sidebarTitle);
+      sidebarTop.appendChild(sidebarToggle);
+      sidebar.appendChild(sidebarTop);
+      sidebar.appendChild(navGroup);
+
+      const main = document.createElement("main");
+      main.className = "dashboard-main";
+      main.appendChild(hero);
+      main.appendChild(grid);
+
+      layout.appendChild(sidebar);
+      layout.appendChild(main);
+      shell.appendChild(layout);
+
+      sidebarToggle.addEventListener("click", () => {
+        layout.classList.toggle("sidebar-expanded");
+        sidebarToggle.textContent = layout.classList.contains("sidebar-expanded") ? "‹" : "≡";
+        sidebarToggle.setAttribute("aria-label", layout.classList.contains("sidebar-expanded") ? "收起导航" : "展开导航");
+      });
+    }
+
+    const rowHeadings = [...document.querySelectorAll(".grid > .row-heading")];
+    const overviewCard = document.getElementById("section-overview-card");
+    const salesAnnualCard = document.getElementById("section-sales-annual-card");
+    const salesMonthlyCard = document.getElementById("section-sales-monthly-card");
+    const oldAnnualCard = document.getElementById("section-old-annual-card");
+    const oldQuarterCard = document.getElementById("section-old-quarter-card");
+    const oldMonthCard = document.getElementById("section-old-month-card");
+    const ambassadorCard = document.getElementById("section-ambassador-card");
+    const presaleCard = document.getElementById("section-presale-card");
+    const focusCustomerCard = document.getElementById("section-focus-card");
+
+    if (overviewCard) {
+      overviewCard.classList.add("anchor-target");
+    }
+    if (salesAnnualCard) {
+      salesAnnualCard.classList.add("anchor-target");
+    }
+    [oldAnnualCard, oldQuarterCard, oldMonthCard].forEach((card, index) => {
+      if (!card) return;
+      if (index === 0) card.classList.add("anchor-target");
+    });
+    if (ambassadorCard) {
+      ambassadorCard.classList.add("anchor-target");
+    }
+    if (presaleCard) {
+      presaleCard.classList.add("anchor-target");
+    }
+    if (focusCustomerCard) {
+      focusCustomerCard.classList.add("anchor-target");
+    }
+
+    const sectionGroups = {
+      overview: [hero, overviewCard],
+      sales: [salesAnnualCard, salesMonthlyCard],
+      "old-bundle": [oldAnnualCard, oldQuarterCard, oldMonthCard, ambassadorCard],
+      "old-only": [oldAnnualCard, oldQuarterCard, oldMonthCard],
+      ambassador: [ambassadorCard],
+      "presale-bundle": [presaleCard, focusCustomerCard],
+      presale: [presaleCard],
+      focus: [focusCustomerCard]
+    };
+
+    const allSections = [
+      hero,
+      overviewCard,
+      salesAnnualCard,
+      salesMonthlyCard,
+      oldAnnualCard,
+      oldQuarterCard,
+      oldMonthCard,
+      ambassadorCard,
+      presaleCard,
+      focusCustomerCard
+    ].filter(Boolean);
+    const navLinks = [...document.querySelectorAll(".sidebar [data-view]")];
+
+    function setView(view) {
+      allSections.forEach((section) => section.classList.add("section-hidden"));
+      rowHeadings.forEach((heading) => heading.classList.add("section-hidden"));
+      grid.classList.remove("view-sales", "view-old-bundle", "view-old-only", "view-ambassador", "view-presale-bundle", "view-focus");
+      (sectionGroups[view] || sectionGroups.overview).forEach((section) => section?.classList.remove("section-hidden"));
+      if (view === "sales") grid.classList.add("view-sales");
+      if (view === "old-bundle") grid.classList.add("view-old-bundle");
+      if (view === "old-only") grid.classList.add("view-old-only");
+      if (view === "ambassador") grid.classList.add("view-ambassador");
+      if (view === "presale") grid.classList.add("view-presale-bundle");
+      if (view === "presale-bundle") grid.classList.add("view-presale-bundle");
+      if (view === "focus") grid.classList.add("view-focus");
+      navLinks.forEach((link) => link.classList.toggle("is-active", link.dataset.view === view));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    window.dashboardSetView = setView;
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        setView(link.dataset.view);
+      });
+    });
+
+    setView("overview");
   </script>
 </body>
 </html>
+
