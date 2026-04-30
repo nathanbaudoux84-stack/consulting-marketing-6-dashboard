@@ -256,6 +256,32 @@
       color: rgba(249, 247, 241, 0.82);
     }
 
+    .hero-meta {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .hero-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: rgba(249, 247, 241, 0.94);
+      font-size: 13px;
+      line-height: 1;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-chip strong {
+      color: #f7cd82;
+      font-size: 14px;
+    }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -505,12 +531,16 @@
     }
 
     .alloc-cell {
+      appearance: none;
+      width: 100%;
       padding: 10px 8px;
       border-radius: 14px;
       text-align: center;
       background: #f4ecdc;
       border: 1px solid var(--line);
       font-size: 12px;
+      cursor: pointer;
+      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
     }
 
     .alloc-cell strong {
@@ -518,6 +548,18 @@
       margin-top: 4px;
       font-size: 16px;
       color: var(--green);
+    }
+
+    .alloc-cell.current {
+      background: linear-gradient(180deg, rgba(255, 247, 214, 0.95), rgba(244, 226, 170, 0.92));
+      border-color: rgba(203, 122, 38, 0.56);
+      box-shadow: 0 10px 20px rgba(203, 122, 38, 0.16), inset 0 0 0 2px rgba(255,255,255,0.52);
+      transform: translateY(-2px);
+    }
+
+    .alloc-cell.current strong {
+      font-size: 18px;
+      color: #8e4f16;
     }
 
     .legend {
@@ -680,25 +722,45 @@
     }
 
     .old-customer-card .section-title {
-      font-size: 18px;
+      font-size: 16px;
     }
 
     .old-customer-card .section-note,
     .old-customer-card .legend span {
-      font-size: 12px;
-      line-height: 1.45;
+      font-size: 11px;
+      line-height: 1.35;
     }
 
     .old-customer-card .title-row {
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .old-customer-card .name {
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .old-customer-card .rate {
-      font-size: 13px;
+      font-size: 12px;
+    }
+
+    .old-customer-card .old-customer-row {
+      grid-template-columns: 64px minmax(72px, 1fr) 58px;
+      gap: 6px;
+      padding: 7px 8px;
+    }
+
+    .old-customer-card .track-number {
+      font-size: 11px;
+      padding: 1px 5px;
+    }
+
+    .old-customer-card .legend {
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .old-customer-card {
+      padding: 18px 16px;
     }
 
     .old-annual-fill {
@@ -789,34 +851,34 @@
       }
 
     #presale-rows .ambassador-table {
-      min-width: 980px;
+      min-width: 900px;
       table-layout: fixed;
     }
 
     #presale-rows .ambassador-table th,
     #presale-rows .ambassador-table td {
       padding: 5px 6px;
-      font-size: 13px;
+      font-size: 12px;
     }
 
     #presale-rows .ambassador-table .name-col {
-      width: 90px;
+      width: 84px;
     }
 
     #presale-rows .ambassador-table .num-col {
-      width: 72px;
+      width: 64px;
     }
 
     #presale-rows .ambassador-table th:nth-child(5),
     #presale-rows .ambassador-table th:nth-child(7),
     #presale-rows .ambassador-table td:nth-child(5),
     #presale-rows .ambassador-table td:nth-child(7) {
-      width: 104px;
+      width: 96px;
     }
 
     #presale-rows .ambassador-table th:nth-child(n + 8),
     #presale-rows .ambassador-table td:nth-child(n + 8) {
-      width: 66px;
+      width: 60px;
     }
 
     #focus-customer-rows .ambassador-table {
@@ -1019,6 +1081,10 @@
       <div class="eyebrow">Consulting Marketing 6</div>
       <h1>顾问营销六部经营看板</h1>
       <p id="hero-note">统计日期 2026-04-30。当前页面按“当前月份”驱动展示：部门完成情况、销售全年目标完成情况、销售当月完成情况，以及截至当月的累计超额判断。</p>
+      <div class="hero-meta">
+        <div class="hero-chip">统计日期 <strong id="display-date-chip">2026-04-30</strong></div>
+        <div class="hero-chip">展示月份 <strong id="display-month-chip">4月</strong></div>
+      </div>
       
     </section>
 
@@ -1221,7 +1287,8 @@
       { monthIndex: 12, month: "12月", ratio: 10 }
     ];
 
-    const currentMonthIndex = 4;
+    const monthParam = Number(new URLSearchParams(window.location.search).get("month"));
+    const currentMonthIndex = Number.isInteger(monthParam) && monthParam >= 1 && monthParam <= 12 ? monthParam : 4;
     const currentMonth = allocation.find((item) => item.monthIndex === currentMonthIndex);
     const currentQuarter = Math.ceil(currentMonthIndex / 3);
     const currentQuarterRatio = allocation
@@ -1600,6 +1667,11 @@
     }));
 
     const focusToday = new Date("2026-04-30T00:00:00+08:00");
+    window.changeMonthView = (monthIndex) => {
+      const url = new URL(window.location.href);
+      url.searchParams.set("month", String(monthIndex));
+      window.location.href = url.toString();
+    };
     const focusCustomerSorted = [...focusCustomers].map((item) => {
       const dateOnly = String(item.presaleDate || "").slice(0, 10);
       const parsed = dateOnly ? new Date(`${dateOnly}T00:00:00+08:00`) : null;
@@ -1619,6 +1691,8 @@
 
     document.getElementById("hero-note").textContent =
       `统计日期 2026-04-30。当前展示月份：${currentMonth.month}。页面中的“超额”统一指截至${currentMonth.month}的累计完成业绩大于累计目标。`;
+    document.getElementById("display-date-chip").textContent = "2026-04-30";
+    document.getElementById("display-month-chip").textContent = currentMonth.month;
     document.getElementById("annual-note").textContent =
       `按年完成率倒序。当前超额口径：1-${currentMonthIndex}月累计完成业绩 > 1-${currentMonthIndex}月累计目标（累计目标比例 ${Math.round(cumulativeTargetRatio * 100)}%）。`;
     document.getElementById("monthly-note").textContent =
@@ -1680,10 +1754,10 @@
     document.getElementById("dept-week-actual").textContent = wan(department.weekActual);
 
     document.getElementById("allocation-strip").innerHTML = allocation.map((item) => `
-      <div class="alloc-cell">
+      <button type="button" class="alloc-cell ${item.monthIndex === currentMonthIndex ? "current" : ""}" onclick="changeMonthView(${item.monthIndex})" aria-label="切换到${item.month}视角">
         ${item.month}
         <strong>${item.ratio}%</strong>
-      </div>
+      </button>
     `).join("");
 
     document.getElementById("annual-bars").innerHTML = [...annualSorted, salesTotal].map((item) => `
