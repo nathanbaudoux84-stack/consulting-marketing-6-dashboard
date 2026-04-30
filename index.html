@@ -1298,16 +1298,7 @@
       .filter((item) => item.monthIndex <= currentMonthIndex)
       .reduce((sum, item) => sum + item.ratio, 0) / 100;
 
-    const department = {
-      annualTarget: 1350.00,
-      cumulativeActual: 383.76,
-      annualRate: 28.43,
-      sourceQuarterRate: 6.96,
-      sourceMonthRate: 6.96,
-      quarterActual: 94.00,
-      monthActual: 94.00,
-      weekActual: 24.19
-    };
+    const departmentAnnualTarget = 1350.00;
 
     const oldCustomerPeople = [
       { name: "黄友桂", target: 30.00, monthlyActuals: { 1: 1.669311, 2: 2.374055, 3: 2.720562, 4: 2.883356 } },
@@ -1439,6 +1430,37 @@
         monthlyOver: monthActual > monthTarget
       };
     });
+
+    const department = (() => {
+      const quarterTarget = departmentAnnualTarget * currentQuarterRatio;
+      const monthTarget = departmentAnnualTarget * currentMonth.ratio / 100;
+      const cumulativeActual = people.reduce((sum, item) => sum + item.actual, 0);
+      const quarterActual = people.reduce((sum, item) => {
+        const quarterMonths = allocation.filter((month) =>
+          Math.ceil(month.monthIndex / 3) === currentQuarter && month.monthIndex <= currentMonthIndex
+        );
+        const itemQuarterActual = quarterMonths.reduce(
+          (acc, month) => acc + (item.monthlyActuals[month.monthIndex] || 0),
+          0
+        );
+        return sum + itemQuarterActual;
+      }, 0);
+      const monthActual = people.reduce((sum, item) => sum + item.monthActual, 0);
+      const annualRate = departmentAnnualTarget ? cumulativeActual / departmentAnnualTarget * 100 : 0;
+      const sourceQuarterRate = quarterTarget ? quarterActual / quarterTarget * 100 : 0;
+      const sourceMonthRate = monthTarget ? monthActual / monthTarget * 100 : 0;
+      const weekActual = currentMonthIndex === 4 ? 24.19 : 0;
+      return {
+        annualTarget: departmentAnnualTarget,
+        cumulativeActual,
+        annualRate,
+        sourceQuarterRate,
+        sourceMonthRate,
+        quarterActual,
+        monthActual,
+        weekActual
+      };
+    })();
 
     const salesTotal = (() => {
       const target = people.reduce((sum, item) => sum + item.target, 0);
