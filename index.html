@@ -1310,30 +1310,40 @@
     };
 
     const oldCustomerPeople = [
-      { name: "黄友桂", target: 30.00, annualActual: 9.647284, quarterActual: 2.883356, monthActual: 2.883356 },
-      { name: "金艳", target: 100.00, annualActual: 37.626903, quarterActual: 7.967175, monthActual: 7.967175 },
-      { name: "李一飞", target: 35.00, annualActual: 14.49858, quarterActual: 4.298115, monthActual: 4.298115 },
-      { name: "鲁金宸", target: 8.00, annualActual: 3.916718, quarterActual: 0.104737, monthActual: 0.104737 },
-      { name: "吕利", target: 80.00, annualActual: 23.092996, quarterActual: 2.765673, monthActual: 2.765673 },
-      { name: "阙剑红", target: 15.00, annualActual: 18.035883, quarterActual: 4.982487, monthActual: 4.982487 },
-      { name: "王伟鹏", target: 8.00, annualActual: 0.89126, quarterActual: 0.161275, monthActual: 0.161275 },
-      { name: "全志斌", target: 50.00, annualActual: 13.323409, quarterActual: 2.060756, monthActual: 2.060756 },
-      { name: "徐量", target: 35.00, annualActual: 13.6021, quarterActual: 5.555164, monthActual: 5.555164 },
-      { name: "应鹏翔", target: 35.00, annualActual: 13.35402, quarterActual: 0.882707, monthActual: 0.882707 },
-      { name: "于艳慧", target: 60.00, annualActual: 23.928399, quarterActual: 7.571135, monthActual: 7.571135 }
+      { name: "黄友桂", target: 30.00, monthlyActuals: { 1: 1.669311, 2: 2.374055, 3: 2.720562, 4: 2.883356 } },
+      { name: "金艳", target: 100.00, monthlyActuals: { 1: 12.520902, 2: 4.758261, 3: 12.380565, 4: 7.967175 } },
+      { name: "李一飞", target: 35.00, monthlyActuals: { 1: 3.588385, 2: 2.014752, 3: 4.597328, 4: 4.298115 } },
+      { name: "鲁金宸", target: 8.00, monthlyActuals: { 1: 0.127041, 2: 0.54, 3: 3.14494, 4: 0.104737 } },
+      { name: "吕利", target: 80.00, monthlyActuals: { 1: 3.288109, 2: 9.296772, 3: 7.742442, 4: 2.765673 } },
+      { name: "阙剑红", target: 15.00, monthlyActuals: { 1: 1.494763, 2: 4.39005, 3: 7.168583, 4: 4.982487 } },
+      { name: "王伟鹏", target: 8.00, monthlyActuals: { 2: 0.171297, 3: 0.558688, 4: 0.161275 } },
+      { name: "全志斌", target: 50.00, monthlyActuals: { 1: 6.813483, 2: 2.013743, 3: 2.435427, 4: 2.060756 } },
+      { name: "徐量", target: 35.00, monthlyActuals: { 1: 2.056237, 2: 0.790674, 3: 5.200025, 4: 5.555164 } },
+      { name: "应鹏翔", target: 35.00, monthlyActuals: { 1: 6.642786, 2: 2.221856, 3: 3.606671, 4: 0.882707 } },
+      { name: "于艳慧", target: 60.00, monthlyActuals: { 1: 2.542273, 2: 1.164926, 3: 12.650065, 4: 7.571135 } }
     ].map((item) => {
-      const quarterTarget = item.target * currentQuarterRatio;
       const monthTarget = item.target * currentMonth.ratio / 100;
+      const annualActual = allocation
+        .filter((month) => month.monthIndex <= currentMonthIndex)
+        .reduce((sum, month) => sum + (item.monthlyActuals[month.monthIndex] || 0), 0);
+      const quarterActual = allocation
+        .filter((month) => Math.ceil(month.monthIndex / 3) === currentQuarter && month.monthIndex <= currentMonthIndex)
+        .reduce((sum, month) => sum + (item.monthlyActuals[month.monthIndex] || 0), 0);
+      const monthActual = item.monthlyActuals[currentMonthIndex] || 0;
+      const quarterTarget = item.target * currentQuarterRatio;
       return {
         ...item,
+        annualActual,
+        quarterActual,
+        monthActual,
         quarterTarget,
         monthTarget,
-        annualRate: item.annualActual / item.target * 100,
-        quarterRate: item.quarterActual / quarterTarget * 100,
-        monthRate: item.monthActual / monthTarget * 100,
-        annualOver: item.annualActual > item.target * cumulativeTargetRatio,
-        quarterOver: item.quarterActual > quarterTarget,
-        monthOver: item.monthActual > monthTarget
+        annualRate: annualActual / item.target * 100,
+        quarterRate: quarterTarget ? quarterActual / quarterTarget * 100 : 0,
+        monthRate: monthTarget ? monthActual / monthTarget * 100 : 0,
+        annualOver: annualActual > item.target * cumulativeTargetRatio,
+        quarterOver: quarterActual > quarterTarget,
+        monthOver: monthActual > monthTarget
       };
     });
 
@@ -1399,53 +1409,35 @@
     }));
 
     const people = [
-      { name: "\u91d1\u8273", target: 240.00, actual: 80.34, monthlyActuals: { 4: 18.36 } },
-      { name: "\u5415\u5229", target: 170.00, actual: 47.11, monthlyActuals: { 4: 9.51 } },
-      { name: "\u4e8e\u8273\u6167", target: 170.00, actual: 58.86, monthlyActuals: { 4: 15.19 } },
-      { name: "\u5f90\u91cf", target: 160.00, actual: 44.90, monthlyActuals: { 4: 16.22 } },
-      { name: "\u674e\u4e00\u98de", target: 150.00, actual: 36.63, monthlyActuals: { 4: 5.107 } },
-      { name: "\u9ec4\u53cb\u6842", target: 100.00, actual: 20.70, monthlyActuals: { 4: 5.794 } },
-      { name: "\u9c81\u91d1\u5bb8", target: 100.00, actual: 25.12, monthlyActuals: { 4: 5.479 } },
-      { name: "\u5168\u5fd7\u658c", target: 100.00, actual: 28.11, monthlyActuals: { 4: 5.313 } },
-      { name: "\u5e94\u9e4f\u7fd4", target: 100.00, actual: 25.55, monthlyActuals: { 4: 3.658 } },
-      { name: "\u738b\u4f1f\u9e4f", target: 50.00, actual: 16.64, monthlyActuals: { 4: 11.67 } },
-      { name: "\u9619\u5251\u7ea2", target: 50.00, actual: 26.85, monthlyActuals: { 4: 6.018 } }
+      { name: "\u91d1\u8273", target: 240.00, monthlyActuals: { 1: 33.164702, 2: 6.317601, 3: 24.311688, 4: 11.187433 } },
+      { name: "\u5415\u5229", target: 170.00, monthlyActuals: { 1: 7.016229, 2: 14.697852, 3: 15.940062, 4: 8.617053 } },
+      { name: "\u4e8e\u8273\u6167", target: 170.00, monthlyActuals: { 1: 16.373243, 2: 6.880266, 3: 20.331245, 4: 13.996355 } },
+      { name: "\u5f90\u91cf", target: 160.00, monthlyActuals: { 1: 6.611207, 2: 4.874334, 3: 16.349375, 4: 15.562774 } },
+      { name: "\u674e\u4e00\u98de", target: 150.00, monthlyActuals: { 1: 12.013805, 2: 8.494702, 3: 11.029868, 4: 5.196975 } },
+      { name: "\u9ec4\u53cb\u6842", target: 100.00, monthlyActuals: { 1: 6.403671, 2: 3.342115, 3: 5.219432, 4: 4.92976 } },
+      { name: "\u9c81\u91d1\u5bb8", target: 100.00, monthlyActuals: { 1: 3.039511, 2: 4.89238, 3: 11.71198, 4: 5.119407 } },
+      { name: "\u5168\u5fd7\u658c", target: 100.00, monthlyActuals: { 1: 7.425289, 2: 3.589583, 3: 11.513467, 4: 5.533396 } },
+      { name: "\u5e94\u9e4f\u7fd4", target: 100.00, monthlyActuals: { 1: 11.439773, 2: 3.124796, 3: 7.261211, 4: 3.658167 } },
+      { name: "\u738b\u4f1f\u9e4f", target: 50.00, monthlyActuals: { 1: 1.55023, 2: 1.422837, 3: 2.247618, 4: 11.215885 } },
+      { name: "\u9619\u5251\u7ea2", target: 50.00, monthlyActuals: { 1: 3.764813, 2: 5.74125, 3: 11.258773, 4: 5.980887 } }
     ].map((item) => {
       const monthTarget = item.target * currentMonth.ratio / 100;
       const monthActual = item.monthlyActuals[currentMonthIndex] ?? 0;
+      const actual = allocation
+        .filter((month) => month.monthIndex <= currentMonthIndex)
+        .reduce((sum, month) => sum + (item.monthlyActuals[month.monthIndex] || 0), 0);
       const cumulativeTarget = item.target * cumulativeTargetRatio;
       return {
         ...item,
+        actual,
         monthTarget,
         monthActual,
-        annualRate: item.actual / item.target * 100,
-        monthlyRate: monthActual / monthTarget * 100,
+        annualRate: item.target ? actual / item.target * 100 : 0,
+        monthlyRate: monthTarget ? monthActual / monthTarget * 100 : 0,
         cumulativeTarget,
-        cumulativeOver: item.actual > cumulativeTarget,
+        cumulativeOver: actual > cumulativeTarget,
         monthlyOver: monthActual > monthTarget
       };
-    });
-
-    [
-      { actual: 80.34, monthActual: 18.36 },
-      { actual: 47.11, monthActual: 9.51 },
-      { actual: 58.86, monthActual: 15.19 },
-      { actual: 44.90, monthActual: 16.22 },
-      { actual: 36.63, monthActual: 5.107 },
-      { actual: 20.70, monthActual: 5.794 },
-      { actual: 25.12, monthActual: 5.479 },
-      { actual: 28.11, monthActual: 5.313 },
-      { actual: 25.55, monthActual: 3.658 },
-      { actual: 16.64, monthActual: 11.67 },
-      { actual: 26.85, monthActual: 6.018 }
-    ].forEach((latest, index) => {
-      people[index].actual = latest.actual;
-      people[index].monthActual = latest.monthActual;
-      people[index].monthlyActuals[currentMonthIndex] = latest.monthActual;
-      people[index].annualRate = people[index].actual / people[index].target * 100;
-      people[index].monthlyRate = people[index].monthActual / people[index].monthTarget * 100;
-      people[index].cumulativeOver = people[index].actual > people[index].cumulativeTarget;
-      people[index].monthlyOver = people[index].monthActual > people[index].monthTarget;
     });
 
     const salesTotal = (() => {
