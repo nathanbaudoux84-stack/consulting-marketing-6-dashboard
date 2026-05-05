@@ -1249,7 +1249,7 @@
         <div class="title-row">
           <div>
             <h2 class="section-title">售前情况</h2>
-            <div class="section-note" id="presale-note">按顾问营销六部员工列示，意向产品统一按好业财统计。当月售前按 2026-04-01 至 2026-04-30；待处理、已演示、跟进中、处理中、已沟通按近三个月 2026-02-01 至 2026-04-30 统计。将鼠标放到五类数量上可查看售前单号。</div>
+            <div class="section-note" id="presale-note">??????????????????????????????????????????????????</div>
           </div>
         </div>
         <div class="ambassador-table-wrap" id="presale-rows"></div>
@@ -1339,21 +1339,32 @@
         quarterActual: 97.44,
         monthActual: 97.44,
         weekActual: 27.64
+      },
+      5: {
+        annualTarget: 1350.00,
+        cumulativeActual: 0,
+        annualRate: 0,
+        sourceQuarterRate: 0,
+        sourceMonthRate: 0,
+        quarterActual: 0,
+        monthActual: 0,
+        weekActual: 0,
+        pendingSource: true
       }
     };
 
     const oldCustomerPeople = [
-      { name: "\u9ec4\u53cb\u6842", target: 30.00, monthlyActuals: { 1: 1.669311, 2: 2.374055, 3: 2.720562, 4: 2.883356 } },
-      { name: "\u91d1\u8273", target: 100.00, monthlyActuals: { 1: 12.520902, 2: 4.758261, 3: 12.380565, 4: 7.967175 } },
-      { name: "\u674e\u4e00\u98de", target: 35.00, monthlyActuals: { 1: 3.588385, 2: 2.014752, 3: 4.597328, 4: 4.298115 } },
-      { name: "\u9c81\u91d1\u5bb8", target: 8.00, monthlyActuals: { 1: 0.127041, 2: 0.54, 3: 3.14494, 4: 0.104737 } },
-      { name: "\u5415\u5229", target: 80.00, monthlyActuals: { 1: 3.288109, 2: 9.296772, 3: 7.742442, 4: 2.765673 } },
-      { name: "\u9619\u5251\u7ea2", target: 15.00, monthlyActuals: { 1: 1.494763, 2: 4.39005, 3: 7.168583, 4: 4.982487 } },
-      { name: "\u738b\u4f1f\u9e4f", target: 8.00, monthlyActuals: { 2: 0.171297, 3: 0.558688, 4: 0.161275 } },
-      { name: "\u5168\u5fd7\u658c", target: 50.00, monthlyActuals: { 1: 6.813483, 2: 2.013743, 3: 2.435427, 4: 2.060756 } },
-      { name: "\u5f90\u91cf", target: 35.00, monthlyActuals: { 1: 2.056237, 2: 0.790674, 3: 5.200025, 4: 5.555164 } },
-      { name: "\u5e94\u9e4f\u7fd4", target: 35.00, monthlyActuals: { 1: 6.642786, 2: 2.221856, 3: 3.606671, 4: 0.882707 } },
-      { name: "\u4e8e\u8273\u6167", target: 60.00, monthlyActuals: { 1: 2.542273, 2: 1.164926, 3: 12.650065, 4: 7.571135 } }
+      { name: "???", target: 30.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+      { name: "??", target: 100.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+      { name: "???", target: 35.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+      { name: "???", target: 8.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+      { name: "??", target: 80.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+      { name: "???", target: 15.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+      { name: "???", target: 8.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+      { name: "???", target: 50.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+      { name: "??", target: 35.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+      { name: "???", target: 35.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+      { name: "???", target: 60.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } }
     ].map((item) => {
       const monthTarget = item.target * currentMonth.ratio / 100;
       const annualActual = allocation
@@ -1381,59 +1392,74 @@
     });
 
     const ambassadorPeople = [
-      { name: "\u9ec4\u53cb\u6842", annualTotal: 32, monthTarget: 20, monthDone: 17, weekTarget: 4, weekDone: 1 },
-      { name: "\u91d1\u8273", annualTotal: 41, monthTarget: 16, monthDone: 20, weekTarget: 3.2, weekDone: 0 },
-      { name: "\u674e\u4e00\u98de", annualTotal: 34, monthTarget: 16, monthDone: 17, weekTarget: 3.2, weekDone: 4 },
-      { name: "\u9c81\u91d1\u5bb8", annualTotal: 61, monthTarget: 16, monthDone: 18, weekTarget: 3.2, weekDone: 6 },
-      { name: "\u5415\u5229", annualTotal: 44, monthTarget: 20, monthDone: 19, weekTarget: 4, weekDone: 3 },
-      { name: "\u9619\u5251\u7ea2", annualTotal: 3, monthTarget: 0, monthDone: 0, weekTarget: 0, weekDone: 0 },
-      { name: "\u738b\u4f1f\u9e4f", annualTotal: 48, monthTarget: 20, monthDone: 24, weekTarget: 4, weekDone: 1 },
-      { name: "\u5168\u5fd7\u658c", annualTotal: 41, monthTarget: 20, monthDone: 21, weekTarget: 4, weekDone: 4 },
-      { name: "\u5f90\u91cf", annualTotal: 85, monthTarget: 20, monthDone: 29, weekTarget: 4, weekDone: 3 },
-      { name: "\u53f6\u6862", annualTotal: 0, monthTarget: 0, monthDone: 0, weekTarget: 0, weekDone: 0 },
-      { name: "\u5e94\u9e4f\u7fd4", annualTotal: 29, monthTarget: 16, monthDone: 18, weekTarget: 3.2, weekDone: 11 },
-      { name: "\u4e8e\u8273\u6167", annualTotal: 51, monthTarget: 20, monthDone: 20, weekTarget: 4, weekDone: 7 }
-    ].map((item) => ({
-      ...item,
-      weekTarget: Math.ceil(item.monthTarget / 5),
-      monthRate: item.monthTarget ? item.monthDone / item.monthTarget * 100 : 0,
-      weekRate: Math.ceil(item.monthTarget / 5) ? item.weekDone / Math.ceil(item.monthTarget / 5) * 100 : 0
-    }));
+      { name: "\u9ec4\u53cb\u6842", annualTotalByMonth: {"4": 32, "5": 37}, monthTargetByMonth: {"4": 20, "5": null}, monthDoneByMonth: {"4": 17, "5": 5}, weekDoneByMonth: {"4": 1, "5": 5} },
+      { name: "\u91d1\u8273", annualTotalByMonth: {"4": 41, "5": 41}, monthTargetByMonth: {"4": 16, "5": null}, monthDoneByMonth: {"4": 20, "5": 0}, weekDoneByMonth: {"4": 0, "5": 0} },
+      { name: "\u674e\u4e00\u98de", annualTotalByMonth: {"4": 34, "5": 34}, monthTargetByMonth: {"4": 16, "5": null}, monthDoneByMonth: {"4": 17, "5": 0}, weekDoneByMonth: {"4": 4, "5": 0} },
+      { name: "\u9c81\u91d1\u5bb8", annualTotalByMonth: {"4": 61, "5": 61}, monthTargetByMonth: {"4": 16, "5": null}, monthDoneByMonth: {"4": 18, "5": 0}, weekDoneByMonth: {"4": 6, "5": 0} },
+      { name: "\u5415\u5229", annualTotalByMonth: {"4": 44, "5": 45}, monthTargetByMonth: {"4": 20, "5": null}, monthDoneByMonth: {"4": 19, "5": 1}, weekDoneByMonth: {"4": 3, "5": 1} },
+      { name: "\u9619\u5251\u7ea2", annualTotalByMonth: {"4": 3, "5": 3}, monthTargetByMonth: {"4": 0, "5": null}, monthDoneByMonth: {"4": 0, "5": 0}, weekDoneByMonth: {"4": 0, "5": 0} },
+      { name: "\u738b\u4f1f\u9e4f", annualTotalByMonth: {"4": 48, "5": 49}, monthTargetByMonth: {"4": 20, "5": null}, monthDoneByMonth: {"4": 24, "5": 1}, weekDoneByMonth: {"4": 1, "5": 0} },
+      { name: "\u5168\u5fd7\u658c", annualTotalByMonth: {"4": 41, "5": 41}, monthTargetByMonth: {"4": 20, "5": null}, monthDoneByMonth: {"4": 21, "5": 0}, weekDoneByMonth: {"4": 4, "5": 0} },
+      { name: "\u5f90\u91cf", annualTotalByMonth: {"4": 85, "5": 85}, monthTargetByMonth: {"4": 20, "5": null}, monthDoneByMonth: {"4": 29, "5": 0}, weekDoneByMonth: {"4": 3, "5": 0} },
+      { name: "\u5e94\u9e4f\u7fd4", annualTotalByMonth: {"4": 29, "5": 29}, monthTargetByMonth: {"4": 16, "5": null}, monthDoneByMonth: {"4": 18, "5": 0}, weekDoneByMonth: {"4": 11, "5": 0} },
+      { name: "\u4e8e\u8273\u6167", annualTotalByMonth: {"4": 51, "5": 52}, monthTargetByMonth: {"4": 20, "5": null}, monthDoneByMonth: {"4": 20, "5": 1}, weekDoneByMonth: {"4": 7, "5": 1} }
+    ].map((item) => {
+      const monthTarget = item.monthTargetByMonth[currentMonthIndex] ?? null;
+      const weekTarget = monthTarget == null ? null : Math.ceil(monthTarget / 5);
+      const monthDone = item.monthDoneByMonth[currentMonthIndex] ?? 0;
+      const weekDone = item.weekDoneByMonth[currentMonthIndex] ?? 0;
+      return {
+        ...item,
+        annualTotal: item.annualTotalByMonth[currentMonthIndex] ?? item.annualTotalByMonth[4] ?? 0,
+        monthTarget,
+        monthDone,
+        weekTarget,
+        weekDone,
+        monthRate: monthTarget ? monthDone / monthTarget * 100 : 0,
+        weekRate: weekTarget ? weekDone / weekTarget * 100 : 0
+      };
+    });
 
     const presalePeople = [
-      { name: "\u9ec4\u53cb\u6842", annualDone: 9, monthTarget: null, monthDone: 2, dealDone: 0, dealRate: 0, pendingCount: 0, pendingCodes: [], demoCount: 1, demoCodes: ["20260427050"], followingCount: 0, followingCodes: [], processingCount: 0, processingCodes: [], communicatedCount: 0, communicatedCodes: [] },
-      { name: "\u91d1\u8273", annualDone: 41, monthTarget: null, monthDone: 9, dealDone: 2, dealRate: 22.22222222222222, pendingCount: 0, pendingCodes: [], demoCount: 3, demoCodes: ["20260429013", "20260426005", "20260424018"], followingCount: 4, followingCodes: ["20260411007", "20260410040", "20260409021", "20260407024"], processingCount: 0, processingCodes: [], communicatedCount: 0, communicatedCodes: [] },
-      { name: "\u674e\u4e00\u98de", annualDone: 11, monthTarget: null, monthDone: 5, dealDone: 1, dealRate: 20, pendingCount: 0, pendingCodes: [], demoCount: 1, demoCodes: ["20260428039"], followingCount: 2, followingCodes: ["20260421001", "20260305028"], processingCount: 0, processingCodes: [], communicatedCount: 0, communicatedCodes: [] },
-      { name: "\u9c81\u91d1\u5bb8", annualDone: 24, monthTarget: null, monthDone: 7, dealDone: 3, dealRate: 42.857142857142854, pendingCount: 0, pendingCodes: [], demoCount: 0, demoCodes: [], followingCount: 1, followingCodes: ["20260415012"], processingCount: 0, processingCodes: [], communicatedCount: 0, communicatedCodes: [] },
-      { name: "\u5415\u5229", annualDone: 35, monthTarget: null, monthDone: 4, dealDone: 0, dealRate: 0, pendingCount: 0, pendingCodes: [], demoCount: 0, demoCodes: [], followingCount: 1, followingCodes: ["20260414062"], processingCount: 1, processingCodes: ["20260429032"], communicatedCount: 0, communicatedCodes: [] },
-      { name: "\u9619\u5251\u7ea2", annualDone: 19, monthTarget: null, monthDone: 1, dealDone: 0, dealRate: 0, pendingCount: 0, pendingCodes: [], demoCount: 0, demoCodes: [], followingCount: 0, followingCodes: [], processingCount: 0, processingCodes: [], communicatedCount: 0, communicatedCodes: [] },
-      { name: "\u738b\u4f1f\u9e4f", annualDone: 15, monthTarget: null, monthDone: 6, dealDone: 0, dealRate: 0, pendingCount: 0, pendingCodes: [], demoCount: 0, demoCodes: [], followingCount: 0, followingCodes: [], processingCount: 2, processingCodes: ["20260427035", "20260428024"], communicatedCount: 0, communicatedCodes: [] },
-      { name: "\u5168\u5fd7\u658c", annualDone: 26, monthTarget: null, monthDone: 6, dealDone: 1, dealRate: 16.666666666666664, pendingCount: 0, pendingCodes: [], demoCount: 0, demoCodes: [], followingCount: 1, followingCodes: ["20260411004"], processingCount: 1, processingCodes: ["20260429021"], communicatedCount: 0, communicatedCodes: [] },
-      { name: "\u5f90\u91cf", annualDone: 44, monthTarget: null, monthDone: 14, dealDone: 3, dealRate: 21.428571428571427, pendingCount: 0, pendingCodes: [], demoCount: 1, demoCodes: ["20260424002"], followingCount: 1, followingCodes: ["20260321001"], processingCount: 1, processingCodes: ["20260428036"], communicatedCount: 0, communicatedCodes: [] },
-      { name: "\u53f6\u6862", annualDone: 0, monthTarget: null, monthDone: 0, dealDone: 0, dealRate: 0, pendingCount: 0, pendingCodes: [], demoCount: 0, demoCodes: [], followingCount: 0, followingCodes: [], processingCount: 0, processingCodes: [], communicatedCount: 0, communicatedCodes: [] },
-      { name: "\u5e94\u9e4f\u7fd4", annualDone: 12, monthTarget: null, monthDone: 5, dealDone: 1, dealRate: 20, pendingCount: 0, pendingCodes: [], demoCount: 2, demoCodes: ["20260427005", "20260420009"], followingCount: 0, followingCodes: [], processingCount: 0, processingCodes: [], communicatedCount: 0, communicatedCodes: [] },
-      { name: "\u4e8e\u8273\u6167", annualDone: 44, monthTarget: null, monthDone: 9, dealDone: 2, dealRate: 22.22222222222222, pendingCount: 0, pendingCodes: [], demoCount: 0, demoCodes: [], followingCount: 3, followingCodes: ["20260420051", "20260409039", "20260324023"], processingCount: 2, processingCodes: ["20260325020", "20260422009"], communicatedCount: 0, communicatedCodes: [] }
-    ].filter((item) => item.name !== "\u53f6\u6862").map((item) => ({
-      ...item,
-      monthTarget: 20,
-      monthRate: item.monthDone / 20 * 100
-    }));
+      { name: "\u9ec4\u53cb\u6842", byMonth: {"4": {"annualDone": 9, "monthDone": 2, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 1, "demoCodes": ["20260427050"], "followingCount": 0, "followingCodes": []}, "5": {"annualDone": 9, "monthDone": 0, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 1, "demoCodes": ["20260427050"], "followingCount": 0, "followingCodes": []}} },
+      { name: "\u91d1\u8273", byMonth: {"4": {"annualDone": 41, "monthDone": 9, "dealDone": 2, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 3, "demoCodes": ["20260429013", "20260426005", "20260424018"], "followingCount": 4, "followingCodes": ["20260411007", "20260410040", "20260409021", "20260407024"]}, "5": {"annualDone": 42, "monthDone": 1, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 1, "processingCodes": ["20260503001"], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 3, "demoCodes": ["20260429013", "20260426005", "20260424018"], "followingCount": 4, "followingCodes": ["20260411007", "20260410040", "20260409021", "20260407024"]}} },
+      { name: "\u674e\u4e00\u98de", byMonth: {"4": {"annualDone": 11, "monthDone": 5, "dealDone": 1, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 1, "demoCodes": ["20260428039"], "followingCount": 2, "followingCodes": ["20260421001", "20260305028"]}, "5": {"annualDone": 11, "monthDone": 0, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 1, "demoCodes": ["20260428039"], "followingCount": 2, "followingCodes": ["20260421001", "20260305028"]}} },
+      { name: "\u9c81\u91d1\u5bb8", byMonth: {"4": {"annualDone": 24, "monthDone": 7, "dealDone": 3, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 1, "followingCodes": ["20260415012"]}, "5": {"annualDone": 24, "monthDone": 0, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 1, "followingCodes": ["20260415012"]}} },
+      { name: "\u5415\u5229", byMonth: {"4": {"annualDone": 35, "monthDone": 4, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 1, "processingCodes": ["20260429032"], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 1, "followingCodes": ["20260414062"]}, "5": {"annualDone": 36, "monthDone": 1, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 2, "processingCodes": ["20260429032", "20260504003"], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 1, "followingCodes": ["20260414062"]}} },
+      { name: "\u9619\u5251\u7ea2", byMonth: {"4": {"annualDone": 19, "monthDone": 1, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 0, "followingCodes": []}, "5": {"annualDone": 19, "monthDone": 0, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 0, "followingCodes": []}} },
+      { name: "\u738b\u4f1f\u9e4f", byMonth: {"4": {"annualDone": 14, "monthDone": 5, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 1, "processingCodes": ["20260427035"], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 0, "followingCodes": []}, "5": {"annualDone": 14, "monthDone": 0, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 1, "processingCodes": ["20260427035"], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 0, "followingCodes": []}} },
+      { name: "\u5168\u5fd7\u658c", byMonth: {"4": {"annualDone": 25, "monthDone": 5, "dealDone": 1, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 1, "followingCodes": ["20260411004"]}, "5": {"annualDone": 26, "monthDone": 1, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 1, "processingCodes": ["20260429021"], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 1, "followingCodes": ["20260411004"]}} },
+      { name: "\u5f90\u91cf", byMonth: {"4": {"annualDone": 44, "monthDone": 14, "dealDone": 3, "pendingCount": 0, "pendingCodes": [], "processingCount": 1, "processingCodes": ["20260428036"], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 1, "demoCodes": ["20260424002"], "followingCount": 1, "followingCodes": ["20260321001"]}, "5": {"annualDone": 44, "monthDone": 0, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 1, "processingCodes": ["20260428036"], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 1, "demoCodes": ["20260424002"], "followingCount": 1, "followingCodes": ["20260321001"]}} },
+      { name: "\u53f6\u6862", byMonth: {"4": {"annualDone": 0, "monthDone": 0, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 0, "followingCodes": []}, "5": {"annualDone": 0, "monthDone": 0, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 0, "followingCodes": []}} },
+      { name: "\u5e94\u9e4f\u7fd4", byMonth: {"4": {"annualDone": 12, "monthDone": 5, "dealDone": 1, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 2, "demoCodes": ["20260427005", "20260420009"], "followingCount": 0, "followingCodes": []}, "5": {"annualDone": 12, "monthDone": 0, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 2, "demoCodes": ["20260427005", "20260420009"], "followingCount": 0, "followingCodes": []}} },
+      { name: "\u4e8e\u8273\u6167", byMonth: {"4": {"annualDone": 44, "monthDone": 9, "dealDone": 2, "pendingCount": 0, "pendingCodes": [], "processingCount": 2, "processingCodes": ["20260325020", "20260422009"], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 3, "followingCodes": ["20260420051", "20260409039", "20260324023"]}, "5": {"annualDone": 44, "monthDone": 0, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 2, "processingCodes": ["20260325020", "20260422009"], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 3, "followingCodes": ["20260420051", "20260409039", "20260324023"]}} }
+    ].filter((item) => item.name !== "\u53f6\u6862").map((item) => {
+      const selected = item.byMonth[currentMonthIndex] || item.byMonth[4] || {};
+      const monthTarget = currentMonthIndex === 4 ? 20 : null;
+      return {
+        ...item,
+        ...selected,
+        monthTarget,
+        monthRate: monthTarget ? (selected.monthDone || 0) / monthTarget * 100 : 0,
+        dealRate: selected.monthDone ? (selected.dealDone || 0) / selected.monthDone * 100 : 0
+      };
+    });
 
     // 数据口径约定：
     // 1. 销售全年业绩、销售当月业绩：固定从 Excel（work-report-2026.xlsx / 数据源）按订单年月取数。
     // 2. 不再从 BI 链接读取销售业绩，避免后续月份切换时口径不一致。
     const people = [
-      { name: "\u91d1\u8273", target: 240.00, monthlyActuals: { 1: 33.164702, 2: 6.317601, 3: 24.311688, 4: 11.187433 } },
-      { name: "\u5415\u5229", target: 170.00, monthlyActuals: { 1: 7.016229, 2: 14.697852, 3: 15.940062, 4: 8.617053 } },
-      { name: "\u4e8e\u8273\u6167", target: 170.00, monthlyActuals: { 1: 16.373243, 2: 6.880266, 3: 20.331245, 4: 13.996355 } },
-      { name: "\u5f90\u91cf", target: 160.00, monthlyActuals: { 1: 6.611207, 2: 4.874334, 3: 16.349375, 4: 15.562774 } },
-      { name: "\u674e\u4e00\u98de", target: 150.00, monthlyActuals: { 1: 12.013805, 2: 8.494702, 3: 11.029868, 4: 5.196975 } },
-      { name: "\u9ec4\u53cb\u6842", target: 100.00, monthlyActuals: { 1: 6.403671, 2: 3.342115, 3: 5.219432, 4: 4.92976 } },
-      { name: "\u9c81\u91d1\u5bb8", target: 100.00, monthlyActuals: { 1: 3.039511, 2: 4.89238, 3: 11.71198, 4: 5.119407 } },
-      { name: "\u5168\u5fd7\u658c", target: 100.00, monthlyActuals: { 1: 7.425289, 2: 3.589583, 3: 11.513467, 4: 5.533396 } },
-      { name: "\u5e94\u9e4f\u7fd4", target: 100.00, monthlyActuals: { 1: 11.439773, 2: 3.124796, 3: 7.261211, 4: 3.658167 } },
-      { name: "\u738b\u4f1f\u9e4f", target: 50.00, monthlyActuals: { 1: 1.55023, 2: 1.422837, 3: 2.247618, 4: 11.215885 } },
-      { name: "\u9619\u5251\u7ea2", target: 50.00, monthlyActuals: { 1: 3.764813, 2: 5.74125, 3: 11.258773, 4: 5.980887 } }
+      { name: "??", target: 240.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+      { name: "??", target: 170.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+      { name: "???", target: 170.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+      { name: "??", target: 160.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+      { name: "???", target: 150.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+      { name: "???", target: 100.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+      { name: "???", target: 100.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+      { name: "???", target: 100.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+      { name: "???", target: 100.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+      { name: "???", target: 50.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
+      { name: "???", target: 50.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } }
     ].map((item) => {
       const monthTarget = item.target * currentMonth.ratio / 100;
       const monthActual = item.monthlyActuals[currentMonthIndex] ?? 0;
@@ -1538,7 +1564,7 @@
       const weekTarget = ambassadorVisible.reduce((sum, item) => sum + item.weekTarget, 0);
       const weekDone = ambassadorVisible.reduce((sum, item) => sum + item.weekDone, 0);
       return {
-        name: "ϼ",
+        name: "\u5408\u8ba1",
         annualTotal,
         monthTarget,
         monthDone,
@@ -1684,19 +1710,20 @@
     const metricPill = (value, label, codes) =>
       `<span class="presale-count-pill ${codes && codes.length ? "has-codes" : ""}" title="${metricTitle(label, codes)}">${fmt(value)}</span>`;
 
+    const deptPending = !!department.pendingSource;
     document.getElementById("dept-annual-target").textContent = wan(department.annualTarget);
-    document.getElementById("dept-cumulative-actual").textContent = wan(department.cumulativeActual);
-    document.getElementById("dept-annual-rate").textContent = pct(department.annualRate);
-    document.getElementById("dept-annual-rate-bar").style.width = `${department.annualRate}%`;
-    document.getElementById("dept-quarter-rate").textContent = pct(department.sourceQuarterRate);
-    document.getElementById("dept-month-rate").textContent = pct(department.sourceMonthRate);
+    document.getElementById("dept-cumulative-actual").textContent = deptPending ? "??" : wan(department.cumulativeActual);
+    document.getElementById("dept-annual-rate").textContent = deptPending ? "??" : pct(department.annualRate);
+    document.getElementById("dept-annual-rate-bar").style.width = `${deptPending ? 0 : department.annualRate}%`;
+    document.getElementById("dept-quarter-rate").textContent = deptPending ? "??" : pct(department.sourceQuarterRate);
+    document.getElementById("dept-month-rate").textContent = deptPending ? "??" : pct(department.sourceMonthRate);
     document.getElementById("dept-quarter-target-label").textContent = "季目标";
     document.getElementById("dept-quarter-target-value").textContent = wan(deptQuarterTarget);
     document.getElementById("dept-quarter-target-note").textContent = `季金额 ${wan(department.quarterActual)} / 季完成率 ${pct(deptQuarterRate)}`;
     document.getElementById("dept-month-target-label").textContent = `${currentMonth.month}目标`;
     document.getElementById("dept-month-target-value").textContent = wan(deptMonthTarget);
     document.getElementById("dept-month-target-note").textContent = `${currentMonth.month}金额 ${wan(department.monthActual)} / ${currentMonth.month}完成率 ${pct(deptMonthRate)}`;
-    document.getElementById("dept-week-actual").textContent = wan(department.weekActual);
+    document.getElementById("dept-week-actual").textContent = deptPending ? "??" : wan(department.weekActual);
 
     document.getElementById("allocation-strip").innerHTML = allocation.map((item) => `
       <button type="button" class="alloc-cell ${item.monthIndex === currentMonthIndex ? "current" : ""}" onclick="changeMonthView(${item.monthIndex})" aria-label="切换到${item.month}视角">
@@ -1789,7 +1816,7 @@
             <tr>
               <td class="name">${item.name}</td>
               <td class="count-col">${fmt(item.annualTotal)}</td>
-              <td class="num-col">${fmt(item.monthTarget)}</td>
+              <td class="num-col">${item.monthTarget == null ? `<span class="presale-target-missing">??</span>` : fmt(item.monthTarget)}</td>
               <td class="num-col">${fmt(item.monthDone)}</td>
               <td>
                 <div class="ambassador-rate-cell">
@@ -1797,12 +1824,12 @@
                     <span class="ambassador-rate-value ${rateClass(item.monthRate)}">${pct(item.monthRate)}</span>
                   </div>
                   <div class="ambassador-track">
-                    <div class="ambassador-target-fill" style="width:${item.monthTarget / ambassadorMaxMonthScale * 100}%"></div>
+                    <div class="ambassador-target-fill" style="width:${item.monthTarget == null ? 0 : item.monthTarget / ambassadorMaxMonthScale * 100}%"></div>
                     <div class="ambassador-actual-fill ambassador-month-fill" style="width:${item.monthDone / ambassadorMaxMonthScale * 100}%"></div>
                   </div>
                 </div>
               </td>
-              <td class="num-col">${fmt(item.weekTarget)}</td>
+              <td class="num-col">${item.weekTarget == null ? `<span class="presale-target-missing">??</span>` : fmt(item.weekTarget)}</td>
               <td class="num-col">${fmt(item.weekDone)}</td>
               <td>
                 <div class="ambassador-rate-cell">
@@ -1810,7 +1837,7 @@
                     <span class="ambassador-rate-value ${rateClass(item.weekRate)}">${pct(item.weekRate)}</span>
                   </div>
                   <div class="ambassador-track">
-                    <div class="ambassador-target-fill" style="width:${item.weekTarget / ambassadorMaxWeekScale * 100}%"></div>
+                    <div class="ambassador-target-fill" style="width:${item.weekTarget == null ? 0 : item.weekTarget / ambassadorMaxWeekScale * 100}%"></div>
                     <div class="ambassador-actual-fill ambassador-week-fill" style="width:${item.weekDone / ambassadorMaxWeekScale * 100}%"></div>
                   </div>
                 </div>
