@@ -1299,73 +1299,9 @@
       .reduce((sum, item) => sum + item.ratio, 0) / 100;
 
     const departmentAnnualTarget = 1350.00;
-    const departmentByMonth = {
-      1: {
-        annualTarget: 1350.00,
-        cumulativeActual: 99.19,
-        annualRate: 7.35,
-        sourceQuarterRate: 7.39,
-        sourceMonthRate: 7.35,
-        quarterActual: 99.80,
-        monthActual: 99.19,
-        weekActual: 30.24
-      },
-      2: {
-        annualTarget: 1350.00,
-        cumulativeActual: 161.46,
-        annualRate: 11.96,
-        sourceQuarterRate: 12.01,
-        sourceMonthRate: 4.61,
-        quarterActual: 162.07,
-        monthActual: 62.28,
-        weekActual: 28.73
-      },
-      3: {
-        annualTarget: 1350.00,
-        cumulativeActual: 289.15,
-        annualRate: 21.42,
-        sourceQuarterRate: 21.42,
-        sourceMonthRate: 9.46,
-        quarterActual: 289.15,
-        monthActual: 127.69,
-        weekActual: 15.57
-      },
-      4: {
-        annualTarget: 1350.00,
-        cumulativeActual: 386.59,
-        annualRate: 28.64,
-        sourceQuarterRate: 7.22,
-        sourceMonthRate: 7.22,
-        quarterActual: 97.44,
-        monthActual: 97.44,
-        weekActual: 27.64
-      },
-      5: {
-        annualTarget: 1350.00,
-        cumulativeActual: 0,
-        annualRate: 0,
-        sourceQuarterRate: 0,
-        sourceMonthRate: 0,
-        quarterActual: 0,
-        monthActual: 0,
-        weekActual: 0,
-        pendingSource: true
-      }
-    };
+    const departmentByMonth = {"1": {"annualTarget": 1350.0,"cumulativeActual": 99.19,"annualRate": 7.35,"sourceQuarterRate": 7.39,"sourceMonthRate": 7.35,"quarterActual": 99.8,"monthActual": 99.19,"weekActual": 30.24},"2": {"annualTarget": 1350.0,"cumulativeActual": 161.46,"annualRate": 11.96,"sourceQuarterRate": 12.01,"sourceMonthRate": 4.61,"quarterActual": 162.07,"monthActual": 62.28,"weekActual": 28.73},"3": {"annualTarget": 1350.0,"cumulativeActual": 289.15,"annualRate": 21.42,"sourceQuarterRate": 21.42,"sourceMonthRate": 9.46,"quarterActual": 289.15,"monthActual": 127.69,"weekActual": 15.57},"4": {"annualTarget": 1350.0,"cumulativeActual": 386.59,"annualRate": 28.64,"sourceQuarterRate": 7.22,"sourceMonthRate": 7.22,"quarterActual": 97.44,"monthActual": 97.44,"weekActual": 27.64},"5": {"annualTarget": 1350.0,"cumulativeActual": 0,"annualRate": 0,"sourceQuarterRate": 0,"sourceMonthRate": 0,"quarterActual": 0,"monthActual": 0,"weekActual": 0,"pendingSource": true}};
 
-    const oldCustomerPeople = [
-      { name: "???", target: 30.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
-      { name: "??", target: 100.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
-      { name: "???", target: 35.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
-      { name: "???", target: 8.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
-      { name: "??", target: 80.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
-      { name: "???", target: 15.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
-      { name: "???", target: 8.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
-      { name: "???", target: 50.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
-      { name: "??", target: 35.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
-      { name: "???", target: 35.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
-      { name: "???", target: 60.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } }
-    ].map((item) => {
+    const oldCustomerPeople = [{"name": "\u9ec4\u53cb\u6842","target": 30.0,"monthlyActuals": {"1": 1.669311,"2": 2.374055,"3": 2.720562,"4": 3.094876,"5": 0.0}},{"name": "\u91d1\u8273","target": 100.0,"monthlyActuals": {"1": 12.520902,"2": 4.758261,"3": 12.380565,"4": 9.124431,"5": 0.0}},{"name": "\u674e\u4e00\u98de","target": 35.0,"monthlyActuals": {"1": 3.588385,"2": 2.014752,"3": 4.597328,"4": 4.430043,"5": 0.0}},{"name": "\u9c81\u91d1\u5bb8","target": 8.0,"monthlyActuals": {"1": 0.127041,"2": 0.54,"3": 3.14494,"4": 0.122337,"5": 0.0}},{"name": "\u5415\u5229","target": 80.0,"monthlyActuals": {"1": 3.288109,"2": 9.296772,"3": 7.742442,"4": 3.658127,"5": 0.0}},{"name": "\u9619\u5251\u7ea2","target": 15.0,"monthlyActuals": {"1": 1.494763,"2": 4.39005,"3": 7.168583,"4": 5.01961,"5": 0.0}},{"name": "\u738b\u4f1f\u9e4f","target": 8.0,"monthlyActuals": {"1": 0.0,"2": 0.171297,"3": 0.558688,"4": 0.161275,"5": 0.0}},{"name": "\u5168\u5fd7\u658c","target": 50.0,"monthlyActuals": {"1": 6.813483,"2": 2.013743,"3": 2.435427,"4": 2.276276,"5": 0.0}},{"name": "\u5f90\u91cf","target": 35.0,"monthlyActuals": {"1": 2.056237,"2": 0.790674,"3": 5.200025,"4": 5.754964,"5": 0.0}},{"name": "\u5e94\u9e4f\u7fd4","target": 35.0,"monthlyActuals": {"1": 6.642786,"2": 2.221856,"3": 3.606671,"4": 0.882707,"5": 0.0}},{"name": "\u4e8e\u8273\u6167","target": 60.0,"monthlyActuals": {"1": 2.542273,"2": 1.164926,"3": 12.650065,"4": 14.465353,"5": 0.0}}].map((item) => {
       const monthTarget = item.target * currentMonth.ratio / 100;
       const annualActual = allocation
         .filter((month) => month.monthIndex <= currentMonthIndex)
@@ -1391,19 +1327,7 @@
       };
     });
 
-    const ambassadorPeople = [
-      { name: "\u9ec4\u53cb\u6842", annualTotalByMonth: {"4": 32, "5": 37}, monthTargetByMonth: {"4": 20, "5": null}, monthDoneByMonth: {"4": 17, "5": 5}, weekDoneByMonth: {"4": 1, "5": 5} },
-      { name: "\u91d1\u8273", annualTotalByMonth: {"4": 41, "5": 41}, monthTargetByMonth: {"4": 16, "5": null}, monthDoneByMonth: {"4": 20, "5": 0}, weekDoneByMonth: {"4": 0, "5": 0} },
-      { name: "\u674e\u4e00\u98de", annualTotalByMonth: {"4": 34, "5": 34}, monthTargetByMonth: {"4": 16, "5": null}, monthDoneByMonth: {"4": 17, "5": 0}, weekDoneByMonth: {"4": 4, "5": 0} },
-      { name: "\u9c81\u91d1\u5bb8", annualTotalByMonth: {"4": 61, "5": 61}, monthTargetByMonth: {"4": 16, "5": null}, monthDoneByMonth: {"4": 18, "5": 0}, weekDoneByMonth: {"4": 6, "5": 0} },
-      { name: "\u5415\u5229", annualTotalByMonth: {"4": 44, "5": 45}, monthTargetByMonth: {"4": 20, "5": null}, monthDoneByMonth: {"4": 19, "5": 1}, weekDoneByMonth: {"4": 3, "5": 1} },
-      { name: "\u9619\u5251\u7ea2", annualTotalByMonth: {"4": 3, "5": 3}, monthTargetByMonth: {"4": 0, "5": null}, monthDoneByMonth: {"4": 0, "5": 0}, weekDoneByMonth: {"4": 0, "5": 0} },
-      { name: "\u738b\u4f1f\u9e4f", annualTotalByMonth: {"4": 48, "5": 49}, monthTargetByMonth: {"4": 20, "5": null}, monthDoneByMonth: {"4": 24, "5": 1}, weekDoneByMonth: {"4": 1, "5": 0} },
-      { name: "\u5168\u5fd7\u658c", annualTotalByMonth: {"4": 41, "5": 41}, monthTargetByMonth: {"4": 20, "5": null}, monthDoneByMonth: {"4": 21, "5": 0}, weekDoneByMonth: {"4": 4, "5": 0} },
-      { name: "\u5f90\u91cf", annualTotalByMonth: {"4": 85, "5": 85}, monthTargetByMonth: {"4": 20, "5": null}, monthDoneByMonth: {"4": 29, "5": 0}, weekDoneByMonth: {"4": 3, "5": 0} },
-      { name: "\u5e94\u9e4f\u7fd4", annualTotalByMonth: {"4": 29, "5": 29}, monthTargetByMonth: {"4": 16, "5": null}, monthDoneByMonth: {"4": 18, "5": 0}, weekDoneByMonth: {"4": 11, "5": 0} },
-      { name: "\u4e8e\u8273\u6167", annualTotalByMonth: {"4": 51, "5": 52}, monthTargetByMonth: {"4": 20, "5": null}, monthDoneByMonth: {"4": 20, "5": 1}, weekDoneByMonth: {"4": 7, "5": 1} }
-    ].map((item) => {
+    const ambassadorPeople = [{"name": "\u9ec4\u53cb\u6842","annualTotalByMonth": {"4": 32,"5": 37},"monthTargetByMonth": {"4": 20,"5": null},"monthDoneByMonth": {"4": 17,"5": 5},"weekDoneByMonth": {"4": 1,"5": 5}},{"name": "\u91d1\u8273","annualTotalByMonth": {"4": 41,"5": 41},"monthTargetByMonth": {"4": 16,"5": null},"monthDoneByMonth": {"4": 20,"5": 0},"weekDoneByMonth": {"4": 0,"5": 0}},{"name": "\u674e\u4e00\u98de","annualTotalByMonth": {"4": 34,"5": 34},"monthTargetByMonth": {"4": 16,"5": null},"monthDoneByMonth": {"4": 17,"5": 0},"weekDoneByMonth": {"4": 4,"5": 0}},{"name": "\u9c81\u91d1\u5bb8","annualTotalByMonth": {"4": 61,"5": 61},"monthTargetByMonth": {"4": 16,"5": null},"monthDoneByMonth": {"4": 18,"5": 0},"weekDoneByMonth": {"4": 6,"5": 0}},{"name": "\u5415\u5229","annualTotalByMonth": {"4": 44,"5": 45},"monthTargetByMonth": {"4": 20,"5": null},"monthDoneByMonth": {"4": 19,"5": 1},"weekDoneByMonth": {"4": 3,"5": 1}},{"name": "\u9619\u5251\u7ea2","annualTotalByMonth": {"4": 3,"5": 3},"monthTargetByMonth": {"4": 0,"5": null},"monthDoneByMonth": {"4": 0,"5": 0},"weekDoneByMonth": {"4": 0,"5": 0}},{"name": "\u738b\u4f1f\u9e4f","annualTotalByMonth": {"4": 48,"5": 49},"monthTargetByMonth": {"4": 20,"5": null},"monthDoneByMonth": {"4": 24,"5": 1},"weekDoneByMonth": {"4": 1,"5": 0}},{"name": "\u5168\u5fd7\u658c","annualTotalByMonth": {"4": 41,"5": 41},"monthTargetByMonth": {"4": 20,"5": null},"monthDoneByMonth": {"4": 21,"5": 0},"weekDoneByMonth": {"4": 4,"5": 0}},{"name": "\u5f90\u91cf","annualTotalByMonth": {"4": 85,"5": 85},"monthTargetByMonth": {"4": 20,"5": null},"monthDoneByMonth": {"4": 29,"5": 0},"weekDoneByMonth": {"4": 3,"5": 0}},{"name": "\u5e94\u9e4f\u7fd4","annualTotalByMonth": {"4": 29,"5": 29},"monthTargetByMonth": {"4": 16,"5": null},"monthDoneByMonth": {"4": 18,"5": 0},"weekDoneByMonth": {"4": 11,"5": 0}},{"name": "\u4e8e\u8273\u6167","annualTotalByMonth": {"4": 51,"5": 52},"monthTargetByMonth": {"4": 20,"5": null},"monthDoneByMonth": {"4": 20,"5": 1},"weekDoneByMonth": {"4": 7,"5": 1}}].map((item) => {
       const monthTarget = item.monthTargetByMonth[currentMonthIndex] ?? null;
       const weekTarget = monthTarget == null ? null : Math.ceil(monthTarget / 5);
       const monthDone = item.monthDoneByMonth[currentMonthIndex] ?? 0;
@@ -1420,20 +1344,7 @@
       };
     });
 
-    const presalePeople = [
-      { name: "\u9ec4\u53cb\u6842", byMonth: {"4": {"annualDone": 9, "monthDone": 2, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 1, "demoCodes": ["20260427050"], "followingCount": 0, "followingCodes": []}, "5": {"annualDone": 9, "monthDone": 0, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 1, "demoCodes": ["20260427050"], "followingCount": 0, "followingCodes": []}} },
-      { name: "\u91d1\u8273", byMonth: {"4": {"annualDone": 41, "monthDone": 9, "dealDone": 2, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 3, "demoCodes": ["20260429013", "20260426005", "20260424018"], "followingCount": 4, "followingCodes": ["20260411007", "20260410040", "20260409021", "20260407024"]}, "5": {"annualDone": 42, "monthDone": 1, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 1, "processingCodes": ["20260503001"], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 3, "demoCodes": ["20260429013", "20260426005", "20260424018"], "followingCount": 4, "followingCodes": ["20260411007", "20260410040", "20260409021", "20260407024"]}} },
-      { name: "\u674e\u4e00\u98de", byMonth: {"4": {"annualDone": 11, "monthDone": 5, "dealDone": 1, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 1, "demoCodes": ["20260428039"], "followingCount": 2, "followingCodes": ["20260421001", "20260305028"]}, "5": {"annualDone": 11, "monthDone": 0, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 1, "demoCodes": ["20260428039"], "followingCount": 2, "followingCodes": ["20260421001", "20260305028"]}} },
-      { name: "\u9c81\u91d1\u5bb8", byMonth: {"4": {"annualDone": 24, "monthDone": 7, "dealDone": 3, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 1, "followingCodes": ["20260415012"]}, "5": {"annualDone": 24, "monthDone": 0, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 1, "followingCodes": ["20260415012"]}} },
-      { name: "\u5415\u5229", byMonth: {"4": {"annualDone": 35, "monthDone": 4, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 1, "processingCodes": ["20260429032"], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 1, "followingCodes": ["20260414062"]}, "5": {"annualDone": 36, "monthDone": 1, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 2, "processingCodes": ["20260429032", "20260504003"], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 1, "followingCodes": ["20260414062"]}} },
-      { name: "\u9619\u5251\u7ea2", byMonth: {"4": {"annualDone": 19, "monthDone": 1, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 0, "followingCodes": []}, "5": {"annualDone": 19, "monthDone": 0, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 0, "followingCodes": []}} },
-      { name: "\u738b\u4f1f\u9e4f", byMonth: {"4": {"annualDone": 14, "monthDone": 5, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 1, "processingCodes": ["20260427035"], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 0, "followingCodes": []}, "5": {"annualDone": 14, "monthDone": 0, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 1, "processingCodes": ["20260427035"], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 0, "followingCodes": []}} },
-      { name: "\u5168\u5fd7\u658c", byMonth: {"4": {"annualDone": 25, "monthDone": 5, "dealDone": 1, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 1, "followingCodes": ["20260411004"]}, "5": {"annualDone": 26, "monthDone": 1, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 1, "processingCodes": ["20260429021"], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 1, "followingCodes": ["20260411004"]}} },
-      { name: "\u5f90\u91cf", byMonth: {"4": {"annualDone": 44, "monthDone": 14, "dealDone": 3, "pendingCount": 0, "pendingCodes": [], "processingCount": 1, "processingCodes": ["20260428036"], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 1, "demoCodes": ["20260424002"], "followingCount": 1, "followingCodes": ["20260321001"]}, "5": {"annualDone": 44, "monthDone": 0, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 1, "processingCodes": ["20260428036"], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 1, "demoCodes": ["20260424002"], "followingCount": 1, "followingCodes": ["20260321001"]}} },
-      { name: "\u53f6\u6862", byMonth: {"4": {"annualDone": 0, "monthDone": 0, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 0, "followingCodes": []}, "5": {"annualDone": 0, "monthDone": 0, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 0, "followingCodes": []}} },
-      { name: "\u5e94\u9e4f\u7fd4", byMonth: {"4": {"annualDone": 12, "monthDone": 5, "dealDone": 1, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 2, "demoCodes": ["20260427005", "20260420009"], "followingCount": 0, "followingCodes": []}, "5": {"annualDone": 12, "monthDone": 0, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 0, "processingCodes": [], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 2, "demoCodes": ["20260427005", "20260420009"], "followingCount": 0, "followingCodes": []}} },
-      { name: "\u4e8e\u8273\u6167", byMonth: {"4": {"annualDone": 44, "monthDone": 9, "dealDone": 2, "pendingCount": 0, "pendingCodes": [], "processingCount": 2, "processingCodes": ["20260325020", "20260422009"], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 3, "followingCodes": ["20260420051", "20260409039", "20260324023"]}, "5": {"annualDone": 44, "monthDone": 0, "dealDone": 0, "pendingCount": 0, "pendingCodes": [], "processingCount": 2, "processingCodes": ["20260325020", "20260422009"], "communicatedCount": 0, "communicatedCodes": [], "demoCount": 0, "demoCodes": [], "followingCount": 3, "followingCodes": ["20260420051", "20260409039", "20260324023"]}} }
-    ].filter((item) => item.name !== "\u53f6\u6862").map((item) => {
+    const presalePeople = [{"name": "\u9ec4\u53cb\u6842","byMonth": {"4": {"annualDone": 9,"monthDone": 2,"dealDone": 0,"pendingCount": 0,"pendingCodes": [],"processingCount": 0,"processingCodes": [],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 1,"demoCodes": ["20260427050"],"followingCount": 0,"followingCodes": []},"5": {"annualDone": 9,"monthDone": 0,"dealDone": 0,"pendingCount": 0,"pendingCodes": [],"processingCount": 0,"processingCodes": [],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 1,"demoCodes": ["20260427050"],"followingCount": 0,"followingCodes": []}}},{"name": "\u91d1\u8273","byMonth": {"4": {"annualDone": 41,"monthDone": 9,"dealDone": 2,"pendingCount": 0,"pendingCodes": [],"processingCount": 0,"processingCodes": [],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 2,"demoCodes": ["20260429013","20260426005"],"followingCount": 4,"followingCodes": ["20260424018","20260411007","20260410040","20260409021"]},"5": {"annualDone": 42,"monthDone": 1,"dealDone": 0,"pendingCount": 0,"pendingCodes": [],"processingCount": 1,"processingCodes": ["20260503001"],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 3,"demoCodes": ["20260429013","20260426005","20260424018"],"followingCount": 4,"followingCodes": ["20260411007","20260410040","20260409021","20260407024"]}}},{"name": "\u674e\u4e00\u98de","byMonth": {"4": {"annualDone": 11,"monthDone": 5,"dealDone": 1,"pendingCount": 0,"pendingCodes": [],"processingCount": 0,"processingCodes": [],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 0,"demoCodes": [],"followingCount": 2,"followingCodes": ["20260421001","20260305028"]},"5": {"annualDone": 11,"monthDone": 0,"dealDone": 0,"pendingCount": 0,"pendingCodes": [],"processingCount": 0,"processingCodes": [],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 1,"demoCodes": ["20260428039"],"followingCount": 2,"followingCodes": ["20260421001","20260305028"]}}},{"name": "\u9c81\u91d1\u5bb8","byMonth": {"4": {"annualDone": 24,"monthDone": 7,"dealDone": 3,"pendingCount": 0,"pendingCodes": [],"processingCount": 0,"processingCodes": [],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 0,"demoCodes": [],"followingCount": 1,"followingCodes": ["20260415012"]},"5": {"annualDone": 24,"monthDone": 0,"dealDone": 0,"pendingCount": 0,"pendingCodes": [],"processingCount": 0,"processingCodes": [],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 0,"demoCodes": [],"followingCount": 1,"followingCodes": ["20260415012"]}}},{"name": "\u5415\u5229","byMonth": {"4": {"annualDone": 35,"monthDone": 4,"dealDone": 0,"pendingCount": 0,"pendingCodes": [],"processingCount": 1,"processingCodes": ["20260429032"],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 0,"demoCodes": [],"followingCount": 1,"followingCodes": ["20260414062"]},"5": {"annualDone": 36,"monthDone": 1,"dealDone": 0,"pendingCount": 0,"pendingCodes": [],"processingCount": 2,"processingCodes": ["20260429032","20260504003"],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 0,"demoCodes": [],"followingCount": 1,"followingCodes": ["20260414062"]}}},{"name": "\u9619\u5251\u7ea2","byMonth": {"4": {"annualDone": 19,"monthDone": 1,"dealDone": 0,"pendingCount": 0,"pendingCodes": [],"processingCount": 0,"processingCodes": [],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 0,"demoCodes": [],"followingCount": 0,"followingCodes": []},"5": {"annualDone": 19,"monthDone": 0,"dealDone": 0,"pendingCount": 0,"pendingCodes": [],"processingCount": 0,"processingCodes": [],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 0,"demoCodes": [],"followingCount": 0,"followingCodes": []}}},{"name": "\u738b\u4f1f\u9e4f","byMonth": {"4": {"annualDone": 14,"monthDone": 5,"dealDone": 0,"pendingCount": 0,"pendingCodes": [],"processingCount": 1,"processingCodes": ["20260427035"],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 0,"demoCodes": [],"followingCount": 0,"followingCodes": []},"5": {"annualDone": 14,"monthDone": 0,"dealDone": 0,"pendingCount": 0,"pendingCodes": [],"processingCount": 1,"processingCodes": ["20260427035"],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 0,"demoCodes": [],"followingCount": 0,"followingCodes": []}}},{"name": "\u5168\u5fd7\u658c","byMonth": {"4": {"annualDone": 25,"monthDone": 5,"dealDone": 1,"pendingCount": 0,"pendingCodes": [],"processingCount": 0,"processingCodes": [],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 0,"demoCodes": [],"followingCount": 1,"followingCodes": ["20260411004"]},"5": {"annualDone": 26,"monthDone": 1,"dealDone": 0,"pendingCount": 0,"pendingCodes": [],"processingCount": 1,"processingCodes": ["20260429021"],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 0,"demoCodes": [],"followingCount": 1,"followingCodes": ["20260411004"]}}},{"name": "\u5f90\u91cf","byMonth": {"4": {"annualDone": 44,"monthDone": 14,"dealDone": 3,"pendingCount": 0,"pendingCodes": [],"processingCount": 1,"processingCodes": ["20260428036"],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 0,"demoCodes": [],"followingCount": 2,"followingCodes": ["20260424002","20260321001"]},"5": {"annualDone": 44,"monthDone": 0,"dealDone": 0,"pendingCount": 0,"pendingCodes": [],"processingCount": 1,"processingCodes": ["20260428036"],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 1,"demoCodes": ["20260424002"],"followingCount": 1,"followingCodes": ["20260321001"]}}},{"name": "\u5e94\u9e4f\u7fd4","byMonth": {"4": {"annualDone": 12,"monthDone": 5,"dealDone": 1,"pendingCount": 0,"pendingCodes": [],"processingCount": 0,"processingCodes": [],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 1,"demoCodes": ["20260427005"],"followingCount": 1,"followingCodes": ["20260420009"]},"5": {"annualDone": 12,"monthDone": 0,"dealDone": 0,"pendingCount": 0,"pendingCodes": [],"processingCount": 0,"processingCodes": [],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 2,"demoCodes": ["20260427005","20260420009"],"followingCount": 0,"followingCodes": []}}},{"name": "\u4e8e\u8273\u6167","byMonth": {"4": {"annualDone": 44,"monthDone": 9,"dealDone": 2,"pendingCount": 0,"pendingCodes": [],"processingCount": 2,"processingCodes": ["20260325020","20260422009"],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 0,"demoCodes": [],"followingCount": 3,"followingCodes": ["20260420051","20260409039","20260324023"]},"5": {"annualDone": 44,"monthDone": 0,"dealDone": 0,"pendingCount": 0,"pendingCodes": [],"processingCount": 2,"processingCodes": ["20260325020","20260422009"],"communicatedCount": 0,"communicatedCodes": [],"demoCount": 0,"demoCodes": [],"followingCount": 3,"followingCodes": ["20260420051","20260409039","20260324023"]}}}].filter((item) => item.name !== "\u53f6\u6862").map((item) => {
       const selected = item.byMonth[currentMonthIndex] || item.byMonth[4] || {};
       const monthTarget = currentMonthIndex === 4 ? 20 : null;
       return {
@@ -1448,19 +1359,7 @@
     // 数据口径约定：
     // 1. 销售全年业绩、销售当月业绩：固定从 Excel（work-report-2026.xlsx / 数据源）按订单年月取数。
     // 2. 不再从 BI 链接读取销售业绩，避免后续月份切换时口径不一致。
-    const people = [
-      { name: "??", target: 240.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
-      { name: "??", target: 170.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
-      { name: "???", target: 170.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
-      { name: "??", target: 160.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
-      { name: "???", target: 150.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
-      { name: "???", target: 100.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
-      { name: "???", target: 100.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
-      { name: "???", target: 100.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
-      { name: "???", target: 100.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
-      { name: "???", target: 50.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
-      { name: "???", target: 50.00, monthlyActuals: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } }
-    ].map((item) => {
+    const people = [{"name": "\u9ec4\u53cb\u6842","target": 100.0,"monthlyActuals": {"1": 6.403671,"2": 3.342115,"3": 5.219432,"4": 6.50585,"5": 0.0}},{"name": "\u91d1\u8273","target": 240.0,"monthlyActuals": {"1": 33.164702,"2": 6.317601,"3": 24.311688,"4": 22.589989,"5": 0.0}},{"name": "\u674e\u4e00\u98de","target": 150.0,"monthlyActuals": {"1": 12.013805,"2": 8.494702,"3": 11.029868,"4": 9.708903,"5": 0.0}},{"name": "\u9c81\u91d1\u5bb8","target": 100.0,"monthlyActuals": {"1": 3.039511,"2": 4.89238,"3": 11.71198,"4": 6.944767,"5": 0.0}},{"name": "\u5415\u5229","target": 170.0,"monthlyActuals": {"1": 7.016229,"2": 14.697852,"3": 15.940062,"4": 9.509507,"5": 0.0}},{"name": "\u9619\u5251\u7ea2","target": 50.0,"monthlyActuals": {"1": 3.764813,"2": 5.74125,"3": 11.258773,"4": 6.01801,"5": 0.0}},{"name": "\u738b\u4f1f\u9e4f","target": 50.0,"monthlyActuals": {"1": 1.55023,"2": 1.422837,"3": 2.247618,"4": 11.265685,"5": 0.0}},{"name": "\u5168\u5fd7\u658c","target": 100.0,"monthlyActuals": {"1": 7.425289,"2": 3.589583,"3": 11.513467,"4": 5.748916,"5": 0.0}},{"name": "\u5f90\u91cf","target": 160.0,"monthlyActuals": {"1": 6.611207,"2": 4.874334,"3": 16.349375,"4": 16.167904,"5": 0.0}},{"name": "\u5e94\u9e4f\u7fd4","target": 100.0,"monthlyActuals": {"1": 11.439773,"2": 3.124796,"3": 7.261211,"4": 3.658167,"5": 0.0}},{"name": "\u4e8e\u8273\u6167","target": 170.0,"monthlyActuals": {"1": 16.373243,"2": 6.880266,"3": 20.331245,"4": 21.414773,"5": 0.0}}].map((item) => {
       const monthTarget = item.target * currentMonth.ratio / 100;
       const monthActual = item.monthlyActuals[currentMonthIndex] ?? 0;
       const actual = allocation
